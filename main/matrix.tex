@@ -1,0 +1,46 @@
+\subsection{Unitary transformations and matrix exponentials}
+    The exponential of a matrix is defined as
+    \begin{equation}
+        \exp(\vb{A}) = \sum_{n=0}^{+\infty} \frac{\vb{A}^n}{n!} \thinspace .
+    \end{equation}
+    Important properties of matrix exponentials:
+    \begin{align}
+        & \det(\exp(\vb{A})) = \exp(\tr(\vb{A})) \\
+        & \exp(\vb{A})^\dagger = \exp(\vb{A}^\dagger) \\
+        & \vb{B} \thinspace \exp(\vb{A}) \thinspace \vb{B}^{-1} = \exp(\vb{B} \vb{A} \vb{B}^{-1}) \\
+        & \comm{\vb{A}}{\vb{B}} = 0 \implies \exp(\vb{A} + \vb{B}) = \exp(\vb{A}) \exp(\vb{B}) \\
+        & \exp(\vb{A}) \thinspace \vb{B} \thinspace \exp(-\vb{A}) = \vb{B} + \comm{\vb{A}}{\vb{B}} + \frac{1}{2!} \comm{\vb{A}}{\comm{\vb{A}}{\vb{B}}} \thinspace .
+    \end{align}
+    A unitary matrix $\vb{U}$ can always be written as the exponential of an anti-Hermitian matrix $\vb{X}$:
+    \begin{equation}
+        \vb{U} = \exp(\vb{X}) \qquad \vb{X}^\dagger = - \vb{X} \thinspace .
+    \end{equation}
+    A special unitary matrix $\vb{O}$ is a unitary matrix with determinant equal to $1$ and it can be written as
+    \begin{equation}
+        \vb{O} = \exp({}^R \vb{X} + i {}^I \vb{X}) \thinspace ,
+    \end{equation}
+    where ${}^R \vb{X}$ is a real antisymmetric matrix:
+    \begin{equation}
+        {}^R \vb{X} = \frac{\vb{X} - \vb{X}^T}{2} \thinspace ,
+    \end{equation}
+    and ${}^I \vb{X}$ is a real symmetric matrix with vanishing diagonal elements:
+    \begin{equation}
+        {}^I \vb{X} = \frac{\vb{X} + \vb{X}^T}{2i} \thinspace .
+    \end{equation}
+    \\\
+    A special orthogonal matrix can be written as
+    \begin{equation}
+        \vb{R} = \exp({}^R \vb{X}) \qquad {}^R \vb{X}^T = - {}^R \vb{X}
+    \end{equation}
+    where ${}^R \vb{X}$ is a real antisymmetric matrix. It can be diagonalized, yielding
+    \begin{equation}
+        {}^R \vb{X} = i \vb{V} \thinspace \boldsymbol{\tau} \thinspace \vb{V}^\dagger \qquad \vb{V} \vb{V}^\dagger = \vb{I} \thinspace .
+    \end{equation}
+    ${}^R \vb{X}^2$ can also be diagonalized:
+    \begin{equation}
+        {}^R \vb{X}^2 = - \vb{W} \boldsymbol{\tau}^2 \vb{W}^T \qquad \vb{W} \vb{W}^T = \vb{I} \thinspace ,
+    \end{equation}
+    such that a special orthogonal matrix can be calculated using real arithmetic as
+    \begin{equation}
+        \vb{R} = \vb{W} \thinspace \cos \boldsymbol{\tau} \thinspace \vb{W}^T + \vb{W} \thinspace \boldsymbol{\tau}^{-1} \sin \boldsymbol{\tau} \thinspace \vb{W}^T {}^R \vb{X} \thinspace .
+    \end{equation}

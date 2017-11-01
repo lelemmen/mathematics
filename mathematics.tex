@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+
+\include{config/packages}                                                       % Packages for this project
+\include{config/commands}                                                       % Custom commands for this project
+
+
+\title{Mathematics}
+\author{Laurent Lemmens \\ GQCG}
+\date{\today \hspace{6pt} \currenttime}
+
+
+\begin{document}
+
+\maketitle
+
+% % % ABSTRACT AND TABLE OF CONTENTS
+
+% Abstract
+\begin{abstract} \noindent  % enters inside the abstract are not rendered as line breaks in the .pdf-file
+    These notes serve as a summary of mathematics I have thorougly studied.
+\end{abstract}
+
+% Line after abstract
+\begin{center}
+    \line(1,0){250}
+\end{center}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+
+% % % MAIN TEXT % % %
+
+\include{main/modern_algebra}
+
+\newpage
+\include{main/commutators}
+
+\newpage
+\include{main/exponentials}
+
+\newpage
+\include{main/vector_derivatives}
+
+\newpage
+\include{main/symmetric_eigenvalue_problem}
+
+
+% % % APPENDICES % % %
+\newpage
+\begin{appendices}
+    \include{appendices/proofs}
+\end{appendices}
+
+
+% % % REFERENCES % % %
+\newpage
+\bibliographystyle{unsrt}  % Bibliography in chronological order
+\bibliography{/Users/laurentlemmens/Documents/Archief/Bibliotheek/research_bib.bib}
+
+\end{document}

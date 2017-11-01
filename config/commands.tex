@@ -1,0 +1,27 @@
+% % % Special notations for sets of numbers
+\newcommand{\N}{\mathbb{N}}                                                     % Natural numbers
+\newcommand{\R}{\mathbb{R}}                                                     % Real numbers
+\newcommand{\C}{\mathbb{C}}                                                     % Complex numbers
+\newcommand{\F}{\mathbb{F}}                                                     % General field, R or C
+
+% % % Special notations for groups
+\DeclareMathOperator{\GLg}{GL}                                                  % General linear group
+\DeclareMathOperator{\SLg}{SL}                                                  % Special linear group
+\DeclareMathOperator{\Og}{O}                                                    % Orthogonal group
+\DeclareMathOperator{\SOg}{SO}                                                  % Special orthogonal group
+\DeclareMathOperator{\Ug}{U}                                                    % Unitary group
+\DeclareMathOperator{\SUg}{SU}                                                  % Special unitary group
+\DeclareMathOperator{\Aut}{Aut}                                                 % The automorphism group
+
+% % % Other math operators
+\DeclareMathOperator{\id}{id}                                                   % Identity function
+\DeclareMathOperator{\diag}{diag}                                               % Diagonal matrix
+
+
+% Create a custom command for set notation
+%
+\DeclarePairedDelimiterX{\set}[1]{\{}{\}}{\setargs{#1}}
+\NewDocumentCommand{\setargs}{>{\SplitArgument{1}{;}}m}
+{\setargsaux#1}
+\NewDocumentCommand{\setargsaux}{mm}
+{\IfNoValueTF{#2}{#1} {#1\,\delimsize|\,\mathopen{}#2}}%{#1\:;\:#2}

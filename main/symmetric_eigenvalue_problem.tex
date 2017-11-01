@@ -1,0 +1,179 @@
+\section{The symmetric eigenvalue problem}
+In the following, we will be looking for the solutions of the symmetric eigenvalue problem \cite{golub}:
+\begin{equation}
+    \vb{A} \vb{x} = \lambda \vb{x} \thinspace ,
+\end{equation}
+with $\vb{A} \in \R{n}{n}$ and $\vb{A}$ symmetric:
+\begin{equation}
+    \vb{A}^\text{T} = \vb{A} \thinspace .
+\end{equation}
+
+\subsection{Ritz pairs} \label{sec:ritz}
+    On a symmetric matrix $\vb{A}$, we can perform a \emph{symmetric Schur decomposition}. This states that there exists a real, orthogonal matrix $\vb{Q}$
+    \begin{equation}
+        \vb{Q} = \begin{pmatrix} \vb{q}_1 & \vb{q}_2 & \cdots & \vb{q}_n \end{pmatrix} \qquad \qquad \vb{Q}^\text{T} \vb{Q} = \vb{I}_{(n)}
+    \end{equation}
+    such that
+    \begin{equation}
+        \vb{Q}^\text{T} \vb{A} \vb{Q} = \diag(\lambda_1, \cdots, \lambda_n) \thinspace .
+    \end{equation}
+    Moreover,
+    \begin{equation}
+        \vb{A} \vb{q}_k = \lambda_k \vb{q}_k \thinspace .
+    \end{equation}
+    \\\
+    Let $\vb{Q}_1 \in \R{n}{r}$ (first $r$ rows of an orthogonal matrix) have independent columns $\vb{Q}_1^\text{T} \vb{Q}_1 = \vb{I}_{(r)}$. For some $\vb{S} \in \R{r}{r}$, we call
+    \begin{equation}
+        \vb{A}\vb{Q}_1 - \vb{Q}_1 \vb{S}
+    \end{equation}
+    the \emph{residual matrix}. Then there exist $\mu_1, \dots, \mu_r \in \lambda(\vb{A})$:
+    \begin{equation} \label{eq:mu_lambda_residue}
+        \forall k=1, \dots, r: | \mu_k - \lambda_k(\vb{S})| \leq \sqrt{2} \thinspace || \vb{A}\vb{Q}_1 - \vb{Q}_1 \vb{S} ||_F \thinspace ,
+    \end{equation}
+    in which $\lambda_k(S)$ is the $k$-th largest eigenvalue of $\vb{S}$ and $||.||_F$ represents the matrix 2-norm (or Frobenius norm). This results says that the eigenvalues of $\vb{S}$ tend to the eigenvalues of $\vb{A}$, with the better approximation for the smaller Frobenius norm of the residual matrix.\\
+
+    It is then natural to look at which $\vb{S}$ minimizes the right-hand side of equation (\ref{eq:mu_lambda_residue}). It can be shown that
+    \begin{equation}
+        \min_{\vb{S} \in \R{r}{r}} || \vb{A}\vb{Q}_1 - \vb{Q}_1 \vb{S} ||_F = || (\vb{I}_{(n)} - \vb{Q}_1 \vb{Q}_1^\text{T}) \vb{A}\vb{Q}_1 ||_2 \thinspace ,
+    \end{equation}
+    with the minimizer being
+    \begin{equation} \label{eq:residual_frobenius_minimizer}
+        \vb{S} = \vb{Q}_1^\text{T} \vb{A} \vb{Q}_1 \thinspace .
+    \end{equation}
+    This means that we can associate any $r$-dimensional subspace $C(\vb{Q}_1)$ with a set of $r$ "optimal" eigenvalue-eigenvector approximates. Let us Schur-decompose the minimizer (equation (\ref{eq:residual_frobenius_minimizer})) to yield
+    \begin{equation}
+        \vb{Z}^\text{T} \vb{S} \vb{Z} = \diag(\theta_1, \dots, \theta_r) \thinspace ,
+    \end{equation}
+    and
+    \begin{equation}
+        \vb{Q}_1 \vb{Z} = \begin{pmatrix} \vb{y}_1 & \vb{y}_2 & \cdots & \vb{y}_r \end{pmatrix} \thinspace .
+    \end{equation}
+    The tuple $(\theta_k, \vb{y}_k)$ is then called a \emph{Ritz pair}, with $\theta_k$ being the \emph{Ritz value} and $\vb{y}_k$ begin the \emph{Ritz vector}, which are the optimal eigensystem approximates of the symmetric matrix $\vb{A}$ in the $r$-dimensional subspace $C(\vb{Q}_1)$.
+
+\subsection{Approximate eigenpairs and corrections}
+    Let's say we have a current (subscript $c$) approximation $\qty{\lambda_c, \vb{x}_c}$ to the symmetric eigenvalue problem. Denoting the correction to the eigenvalue by $\delta\lambda$ and the correction to the eigenvector by $\boldsymbol{\delta} \vb{x}$, we then want
+    \begin{equation} \label{eq:approximation_eigenequation}
+        \vb{A} (\vb{x}_c + \boldsymbol{\delta} \vb{x}) = (\lambda_c + \delta\lambda)(\vb{x}_c + \boldsymbol{\delta} \vb{x})
+    \end{equation}
+    to hold. By introducing the current \emph{residual vector}
+    \begin{equation}
+        \vb{r}_c = \vb{A} \vb{x}_c - \lambda_c \vb{x}_c \thinspace ,
+    \end{equation}
+    we can rewrite equation (\ref{eq:approximation_eigenequation}) as
+    \begin{equation} \label{eq:residual_vector_equation}
+        \qty(\vb{A} - \lambda_c \vb{I}_{(n)}) \boldsymbol{\delta} \vb{x} - (\delta\lambda) \vb{x}_c = - \vb{r}_c \thinspace .
+    \end{equation}
+    Unfortunately, this is an underdetermined system of equations.
+
+\subsection{The Davidson diagonalization method}
+    The Davidson diagonalization method was devised by Davidson in 1975 \cite{davidson1975} for symmetric, diagonally dominant eigenvalue problems. Since the problem is diagonally dominant, a good estimate of one eigenvector would be
+    \begin{equation}
+        \vb{x}_1 = \vb{e}_1 \thinspace
+    \end{equation}
+    with the associated Rayleigh quotient
+    \begin{equation}
+        \lambda_1 = \vb{x}_1^\text{T} \vb{A} \vb{x}_1
+    \end{equation}
+    and the residual vector
+    \begin{equation}
+        \vb{r}_1 = \vb{A} \vb{x}_1 - \lambda_1 \vb{x}_1 \thinspace .
+    \end{equation}
+    In Davidson's algorithm, the term in $\delta\lambda$ in equation (\ref{eq:residual_vector_equation}) is ignored, and the matrix $\vb{A}$ is replaced by its diagonal $\vb{A}'$, leading to the residual correction equation\footnote{In many other texts, this step would be called the \emph{preconditioning step}: element-wise division of $\vb{r}_1$ by the corresponding diagonal element of $\qty(\vb{A}' - \lambda_1 \vb{I}_{(n)})$.}
+    \begin{equation}
+        \qty(\vb{A}' - \lambda_1 \vb{I}_{(n)}) \boldsymbol{\delta} \vb{v}_1 = - \vb{r}_1 \thinspace ,
+    \end{equation}
+    that is easily solved since, on first sight $\qty(\vb{A}' - \lambda_1 \vb{I}_{(n)})$ is trivially easy to invert as it is a diagonal matrix. Upon inspection, however, we find that
+    \begin{equation}
+        \qty(\vb{A}' - \lambda_1 \vb{I}_{(n)})_{11} = 0 \thinspace ,
+    \end{equation}
+    leading to a zero first column. The solution to this problem is to set the components of $\boldsymbol{\delta} \vb{v}_1$ to zero if the denominator tends to zero as well.\\
+
+    According to section \ref{sec:ritz}, we can find optimal approximates to the eigensystem of $\vb{A}$ by employing subspaces. Let's take
+    \begin{equation}
+        \vb{V}_2 = \begin{pmatrix} \vb{e}_1 & \vb{v}_2 \end{pmatrix} \thinspace ,
+    \end{equation}
+    such that $C(\vb{V}_2)$ is a two-dimensional subspace. In this subspace, we can compute the improved eigenpair $\qty{\lambda_2, \vb{x}_2}$ by diagonalizing $\vb{V}_{2}^\text{T} \vb{A} \vb{V}_2$
+    \begin{equation}
+        (\vb{V}_2^\text{T} \vb{A} \vb{V}_2) \vb{t}_2 = \theta_2 \vb{t}_2 \thinspace ,
+    \end{equation}
+    such that the Ritz pair is given by
+    \begin{align}
+        &\lambda_2 = \theta_2 \\
+        &\vb{x}_2 = \vb{V}_2 \vb{t}_2
+    \end{align}
+    Now we can calculate a new residue
+    \begin{equation}
+        \vb{r}_2 = \vb{A} \vb{x}_2 - \lambda_2 \vb{x}_2
+    \end{equation}
+    and iterate until the norm of the residual vector becomes smaller than some predefined threshold. \\
+
+    The final question now is how to determine $\vb{v}_2$, i.e. the vector that expands the subspace
+    \begin{equation}
+        C(\vb{V}_1 = (\vb{e}_1)) \longrightarrow C(\vb{V}_2) \thinspace .
+    \end{equation}
+    As $\boldsymbol{\delta} \vb{v}_1$ is the solution to the residual correction equation, it helps us in how to expand the subspace. Since $\boldsymbol{\delta} \vb{v}_1$ is not necessarily orthogonal to $\vb{x}_1$, let's project out any "old" information, and subsequently normalize:
+    \begin{align}
+        & \vb{s}_2 = (\vb{I}_{(n)} - \vb{V}_1 \vb{V}_1^T) \boldsymbol{\delta} \vb{v}_1 \\
+        & \vb{v}_2 = \frac{\vb{s}_2}{||\vb{s}_2||} \thinspace ,
+    \end{align}
+    after which we can expand
+    \begin{equation}
+        \vb{V}_2 = \begin{pmatrix} \vb{e}_1 & \vb{v}_2 \end{pmatrix} \thinspace ,
+    \end{equation}
+    with the associated expanded subspace $C(\vb{V}_2)$.
+
+\subsection{The Davidson-Liu diagonalization method}
+    As a generalization of the Davidson method, B. Liu \cite{liu1978} proposed the following method. Suppose we are looking for $r$ smallest roots of interest of the symmetric eigenvalue problem.
+    \begin{enumerate}
+        \item Start with a set of $l$ orthonormalized guess vectors
+        \begin{equation}
+            \vb{V} = \begin{pmatrix} \vb{v}_1 & \vb{v}_2 & \cdots & \vb{v}_l \end{pmatrix} \thinspace ,
+        \end{equation}
+        spanning an $l$-dimensional subspace $C(\vb{V})$. As the matrix $\vb{A}$ is diagonally dominant, good initial guesses are the corresponding vectors of the standard basis.
+
+        \item Construct the subspace matrix
+        \begin{equation}
+            S_{ij} = \vb{v}_i^\text{T} \vb{A} \vb{v}_j \qquad \qquad \vb{S} = \vb{V}^\text{T} \vb{A} \vb{V} \thinspace ,
+        \end{equation}
+        which is an $l \times l$-matrix.
+
+        \item Diagonalize that subspace matrix, finding the $r$ smallest roots of interest:
+        \begin{equation}
+            \vb{S} \vb{z}^k = \lambda^k \vb{z}^k \qquad \qquad k=1,\dots,r \leq l
+        \end{equation}
+        Collecting the eigenvectors of the subspace matrix $\vb{S}$ as columns in a matrix $\vb{Z}$, and the corresponding eigenvalues as the diagonal elements of a matrix $\boldsymbol{\Lambda}$, we can equivalently write
+        \begin{equation}
+            \vb{Z}^\text{T} \vb{S} \vb{A} = \boldsymbol{\Lambda} \thinspace .
+        \end{equation}
+
+        \item From the eigenvectors $\vb{z}^k$, we can construct current estimates to the symmetric eigenvalue problem:
+        \begin{equation}
+            \vb{x}^k = \sum_{i=1}^l \alpha_i^k \vb{v}_i \qquad \qquad \vb{X} = \vb{V} \vb{Z} \thinspace ,
+        \end{equation}
+        where $\vb{X}$'s columns is populated by the the $r$ current estimates.
+
+        \item Calculate the residual vectors
+        \begin{equation}
+            \vb{r}^k = (\vb{A} - \lambda^k \vb{I}_{(n)}) \vb{x}^k
+        \end{equation}
+        and the correction vectors
+        \begin{equation}
+            \delta^k_i = (\lambda^k - A_{ii})^{-1} r_i^k \thinspace .
+        \end{equation}
+        and normalize the correction vectors
+        \begin{equation}
+            \boldsymbol{\delta}^k := \frac{\boldsymbol{\delta}^k}{||\boldsymbol{\delta}^k||}
+        \end{equation}
+
+        \item Expand the subspace $C(\vb{V})$ with the orthonormalized correction vectors. First, project $\boldsymbol{\delta}^k$ on the orthogonal complement of $C(\vb{V})$:
+        \begin{equation}
+            \vb{q} = (\vb{I}_{(n)} - \vb{V} \vb{V}^\text{T}) \boldsymbol{\delta}^k \thinspace ,
+        \end{equation}
+        then calculate the norm $|| \vb{q} ||$ and if it is larger than a certain threshold (say $10^{-3}$), extend the current subspace $C(\vb{V})$ with the orthonormalized correction vector:
+        \begin{align}
+            & \vb{v}' = \frac{\vb{q}}{|| \vb{q} ||} \\
+            & \vb{V} := \qty(\begin{array}{c|c} \vb{V} & \vb{v}' \end{array}) \thinspace .
+        \end{align}
+
+        \item Convergence is achieved when the norm of every residual vector is smaller than a predetermined tolerance.
+    \end{enumerate}

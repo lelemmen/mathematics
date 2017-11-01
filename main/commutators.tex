@@ -1,0 +1,59 @@
+\section{Formulas for commutators and anticommutators}
+    \subsection{General formulas}
+        When an addition and a multiplication are both defined between elements of a set $\set{A, B, C, D, \dots}$, we can check if multiplication is commutative by calculation the commutator:
+        \begin{equation}
+            \comm{A}{B} = AB - BA \thinspace .
+        \end{equation}
+        $A$ and $B$ are said to commute if their commutator is zero. We can analogously define the anticommutator between $A$ and $B$ as
+        \begin{equation}
+            \comm{A}{B}_+ = AB + BA \thinspace .
+        \end{equation}
+
+        From these definitions, we can easily see that
+        \begin{align}
+            & \comm{A}{B} = - \comm{B}{A} \\
+            & \comm{A}{B}_+ = \comm{B}{A}_+ \thinspace .
+        \end{align}
+
+        Letting $\dagger$ stand for the Hermitian adjoint, we can write for operators or $A$ and $B$:
+        \begin{align}
+            & \comm{A}{B}^\dagger = \comm{B^\dagger}{A^\dagger} \\
+            & \comm{A}{B}^\dagger_+ = \comm{A^\dagger}{B^\dagger}_+
+        \end{align}
+
+        If $U$ is a unitary operator or matrix, we can see that
+        \begin{equation}
+            \comm{U^\dagger A U}{U^\dagger B U } = U^\dagger \comm{A}{B} U \thinspace .
+        \end{equation}
+
+    \subsection{Formulas to convert commutators to commutators}
+        \begin{align}
+            & \comm{A}{BC} = B \comm{A}{C} + \comm{A}{B} C \\
+            & \comm{AB}{C} = A \comm{B}{C} + \comm{A}{C}B \\
+            & \comm{AB}{CD} = A \comm{B}{C} D + AC \comm{B}{D} + \comm{A}{C} DB + C \comm{A}{D} B \\
+            & \comm{ABC}{D} = AB \comm{C}{D} + A \comm{B}{D} C + \comm{A}{D} BC \\
+            & \comm{A}{BCD} = BC \comm{A}{D} + B \comm{A}{C} D + \comm{A}{B} CD
+        \end{align}
+
+        For a sufficiently well-behaved function $f$, if $\comm{\comm{A}{B}}{B} = 0$:
+        \begin{equation}
+            \comm{A}{f(B)} = f'(B) \comm{A}{B}
+        \end{equation}
+
+        \begin{equation}
+            \comm{A}{\prod_{k=1}^n B_k} = \sum_{k=1}^n B_1 \cdots B_{k-1} \comm{A}{B_k} B_{k+1} \cdots B_n
+        \end{equation}
+
+    \subsection{Formulas to convert commutators to anticommutators}
+        \begin{align}
+            & \comm{A}{BC} = \comm{A}{B}_+ C - B \comm{A}{C}_+ \\
+            & \comm{AB}{C} = A \comm{B}{C}_+ - \comm{A}{C}_+ B
+        \end{align}
+
+    \subsection{Formulas to convert anticommutators}
+        \begin{align}
+            & \comm{A}{BC}_+ = \comm{A}{B} C + B \comm{A}{C}_+ \\
+            & \comm{A}{BC}_+ = \comm{A}{B}_+ C - B \comm{A}{C} \\
+            & \comm{AB}{C}_+ = A \comm{B}{C}_+ - \comm{A}{C} B \\
+            & \comm{AB}{C}_+ = \comm{A}{C}_+ B + A \comm{B}{C}
+        \end{align}
