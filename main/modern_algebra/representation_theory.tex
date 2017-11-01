@@ -1,0 +1,10 @@
+\subsection{The mathematical definition of a representation}
+     The mathematical branch that connects groups and vector spaces is called representation theory. A representation of a finite group $G$ on a finite-dimensional vector space $V$ is a homomorphism
+     \begin{equation}
+        \rho: G \rightarrow \text{GL}(V): g \mapsto \rho(g)
+     \end{equation}
+     of the group $G$ to the general linear group $\text{GL}(V)$, such that every group element $g$ is associated to an element of the general linear group. In other words, we associate every group element $g$ with an $n \times n$-matrix $\rho(g)$. The term homomorphism means that group structure is preserved:
+     \begin{equation}
+       \forall g_1, g_2 \in G: \rho(g_1 \cdot g_2) = \rho(g_1) \rho(g_2) \thinspace ,
+     \end{equation}
+     which means that the matrix representation $\rho(g_1 \cdot g_2)$ of the group multiplication of two group elements $g_1$ and $g_2$ is the matrix product of their respective matrix representations $\rho(g_1)$ and $\rho(g_2)$.

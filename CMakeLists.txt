@@ -13,11 +13,14 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/r
                    INPUTS
                         config/commands.tex
                         config/packages.tex
-                        main/commutators.tex
-                        main/exponentials.tex
-                        main/modern_algebra.tex
-                        main/symmetric_eigenvalue_problem.tex
-                        main/vector_derivatives.tex
+                        main/linear_algebra/commutators.tex
+                        main/linear_algebra/matrix.tex
+                        main/linear_algebra/symmetric_eigenvalue_problem.tex
+                        main/linear_algebra/vector_derivatives.tex
+                        main/modern_algebra/algebraic_structures.tex
+                        main/modern_algebra/functions.tex
+                        main/modern_algebra/morphisms.tex
+                        main/modern_algebra/representation_theory.tex
 						appendices/proofs.tex
 					IMAGE_DIRS
 						images

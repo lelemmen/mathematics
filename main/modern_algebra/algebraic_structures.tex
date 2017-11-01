@@ -1,0 +1,136 @@
+\subsection{Algebraic structures}
+    Algebraic structures are a combination of a set, together with one or more operations, satisfying a list of axioms.
+
+    \subsubsection{The mathematical definition of a group} \label{sec:group_def}
+        A group has a mathematical definition. It is a set $G$\footnote{We often use the same symbol to denote the set of group elements and the actual group. I don't think there is anything wrong with this, as the distinction is most often clear from the context.} with elements $G=\set{g_1, g_2, \dots, g_n}$, together with an operation $\cdot$ (which is often called the group multiplication), meeting the following axioms:
+        \begin{enumerate}
+            \item closedness
+            \begin{equation}
+                \forall g_1, g_2 \in G: g_1 \cdot g_2 \in G
+            \end{equation}
+
+            \item associativity
+            \begin{equation}
+                \forall g_1, g_2, g_3 \in G: g_1 \cdot (g_2 \cdot g_3) = (g_1 \cdot g_2) \cdot g_3
+            \end{equation}
+
+            \item identity element
+            \begin{equation} \label{eq:group_id}
+                \exists! \thinspace e \in G: \forall g \in G: e \cdot g = g \cdot e = g
+            \end{equation}
+
+            \item inverses
+            \begin{equation}
+                \forall g \in G: \exists! \thinspace g^{-1} \in G: g \cdot g^{-1} = g^{-1} \cdot g = e
+            \end{equation}
+        \end{enumerate}
+        If the axiom
+        \begin{enumerate}
+            \setcounter{enumi}{4}
+            \item commutativity
+            \begin{equation}
+                \forall g_1, g_2 \in G: g_1 \cdot g_2 = g_2 \cdot g_1
+            \end{equation}
+        \end{enumerate}
+        is also met, the group is called Abelian. \\
+
+    \subsubsection{Examples of groups}
+        Since the definition of a group is so abstract, let us try to examine some examples of groups. \\
+
+        As a first, let us consider a group that is familiar to all of us. Let us take the set $\mathbb{R}_0$: the rational numbers excluding $0$, together with the operation of multiplication. We can check that every group axiom holds (the identity element is $1$, and we know the inverse of every real number), even the commutative one. We can therefore say that $\mathbb{R}_0$ with multiplication is an Abelian group. \\
+
+        In section \ref{sec:group_def}, we gave a general name to the group operation: group multiplication. This doesn't mean that the group operation can't be addition, for example, as `group multiplication' is just a name. A perfectly valid example of an Abelian group is the set of integers $\mathbb{Z}$, together with addition. Again, we can check that all group axioms hold (the identity element is $0$, and we all know the inverse of integers with respect to addition). \\
+
+        As a slightly more complicated example of a group, we will consider the general linear group over $\mathbb{R}$ of degree $n$, denoted by $\GLg(n, \mathbb{R})$. This is the set of all invertible $n \times n$-matrices with real entries, with the operation of matrix multiplication. The identity element is $I_n$: the $n \times n$-identity matrix (a diagonal matrix with $1$ on the diagonal), and since we have specified the set as being the set of invertible matrices, every matrix has an inverse. We should emphasize that $\GLg(n, \mathbb{R})$ is not Abelian, as, in general, matrix multiplication is not commutative. A special case of this group is formed by requiring that the determinant of the invertible $n \times n$-matrices is equal to $1$. We call this set of matrices, together with matrix multiplication, the special linear group $\SLg(n)$. \\
+
+        Many sets of matrices, together with the operation of multiplication form a group. We have for example $\Og(n)$, being the set of $n \times n$ orthogonal ($Q^\text{T} Q = Q Q^\text{T} = I_n$) matrices under matrix multiplication. A special group that is related to $\Og(n)$ is $\SOg(n)$, being the set of orthogonal matrices with determinant equal to $1$, under matrix multiplication. Furthermore, we also have the group $\Ug(n)$, being the set of $n \times n$ unitary matrices ($U U^\dagger = U^\dagger U = I_n$), under the group operation of matrix multiplication. Again, a special variant is $\SUg(n)$, being the set of $n \times n$ unitary matrices with determinant equal to $1$, under matrix multiplication. \\
+
+        As a first more abstract example, let us take a look at the trivial group. It consists of the set $G = \set{e}$ under group multiplication. We have to specify that $e$ is the element for which equation (\ref{eq:group_id}) holds: $e$ is the identity element, and consequently its own inverse. With this in mind, we can check that the trivial group is Abelian. \\
+
+        As another abstract example, let's take the set of elements
+        \begin{equation}
+            G = \set{E, C_2, \sigma_v, \sigma_v'} \thinspace ,
+        \end{equation}
+        with the multiplication table given in Table \ref{table:multiplication_table_C2v}.
+        \begin{table}[H] \centering
+            \begin{tabular}{r|rrrr}
+                            & $E$           & $C_2$         & $\sigma_v$    & $\sigma_v'$   \\ \hline
+
+                $E$         & $E$           & $C_2$         & $\sigma_v$    & $\sigma_v'$   \\
+                $C_2$       & $C_2$         & $E$           & $\sigma_v'$   & $\sigma_v$    \\
+                $\sigma_v$  & $\sigma_v$    & $\sigma_v'$   & $E$           & $C_2$         \\
+                $\sigma_v'$ & $\sigma_v'$   & $\sigma_v$    & $C_2$         & $E$
+            \end{tabular}
+            \caption{An example multiplication table}
+            \label{table:multiplication_table_C2v}
+        \end{table}
+        A multiplication table is read as follows. Take an element from the first column (for example $E$), and take an element of the second column ($C_2$), and find their product as $C_2 \cdot E = C_2$ (note that we read group multiplication conventionally from right to left). This set $G$, together with the multiplication $\cdot$ specified in the multiplication table, forms a group as all four group axioms are fulfilled. As commutativity is also fulfilled\footnote{An easy way to confirm the commutative property, is to verify that the multiplication table is symmetric with respect to its diagonal.}, this group is even Abelian. \\
+
+        We can even introduce bigger sets:
+        \begin{equation}
+            G = \set{E, C_3, C^2_3, \sigma_v, \sigma_v', \sigma_v''} \thinspace ,
+        \end{equation}
+        \begin{table}[H] \centering
+            \begin{tabular}{r|rrrrrr}
+                            & $E$           & $C_3$         & $C^2_3$       & $\sigma_v$    & $\sigma_v'$   & $\sigma_v''$  \\ \hline
+
+                $E$         & $E$           & $C_3$         & $C^2_3$       & $\sigma_v$    & $\sigma_v'$   & $\sigma_v''$  \\
+                $C_3$       & $C_3$         & $C^2_3$       & $E$           & $\sigma_v'$   & $\sigma_v''$  & $\sigma_v$    \\
+                $C^2_3$     & $C^2_3$       & $E$           & $C_3$         & $\sigma_v''$  & $\sigma_v$    & $\sigma_v'$   \\
+                $\sigma_v$  & $\sigma_v$    & $\sigma_v''$  & $\sigma_v'$   & $E$           & $C^2_3$       & $C_3$         \\
+                $\sigma_v'$ & $\sigma_v'$   & $\sigma_v$    & $\sigma_v''$  & $C_3$         & $E$           & $C^2_3$       \\
+                $\sigma_v''$& $\sigma_v''$  & $\sigma_v'$   & $\sigma_v$    & $C^2_3$       & $C_3$         & $E$
+            \end{tabular}
+            \caption{Another example of a multiplication table}
+            \label{table:multiplication_table_C3v}
+        \end{table}
+        Given the multiplication table in Table \ref{table:multiplication_table_C3v}, we can verify that the set $G$, together with the group multiplication forms a non-Abelian group. \\
+
+    \subsubsection{The mathematical definition of a field}
+        A field is a set $\F$ together with two binary operations $+$ and $\cdot$, which fulfills
+        \begin{enumerate}
+            \item $\F$, together with the operation $+$ is an Abelian group
+            \item $\F\backslash\set{0_+}$\footnote{The set $\F$ without the identity element of the operation $+$.}, together with the operation $\cdot$ is an Abelian group,
+            \item $\cdot$ is distributive with respect to $+$
+        \end{enumerate}
+        The last property, distributivity of $\cdot$ over $+$ means the following:
+        \begin{align}
+            \forall a, b, c \in \F: &a \cdot (b + c) = a \cdot b + a \cdot c \\
+            & (a + b) \cdot c = a \cdot c + b \cdot c
+        \end{align}
+
+        Some important examples of fields include the field of the real numbers without $0$ ($\R_0$) together with multiplication and addition, and the field of the complex numbers without $0$ ($\C_0$) with the operations addition and multiplication. \\
+
+    \subsubsection{The mathematical definition of a vector space}
+        A vector space over a field $F$ is a set of vectors ($\vb{v} \in V$) together with two binary operations: the vector addition, $+$, and the scalar multiplication with an element of the field, $\cdot$, fulfilling the following axioms:
+            \begin{enumerate}
+                \item $(V,+)$ is an Abelian group
+
+                \item $V$ is closed with respect to scalar multiplication
+                \begin{equation}
+                    c \cdot \vb{v} \in V
+                \end{equation}
+
+                \item $V$ has an identity element for scalar multiplication
+                \begin{equation}
+                    1 \in F: 1 \cdot \vb{v} = \vb{v}
+                \end{equation}
+
+                \item scalar multiplication is compatible with field multiplication
+                \begin{equation}
+                    a \cdot (b \cdot \vb{v}) = (ab) \cdot \vb{v}
+                \end{equation}
+
+                \item scalar multiplication is distributive over vector addition
+                \begin{equation}
+                    a \cdot (\vb{u} + \vb{v}) = a \cdot \vb{u} + a \cdot \vb{v}
+                \end{equation}
+
+                \item scalar multiplication is distributive over field addition
+                \begin{equation}
+                    (a + b) \cdot \vb{u} = a \cdot \vb{u} + b \cdot \vb{u}
+                \end{equation}
+            \end{enumerate}
+
+    \subsubsection{Examples of vector spaces}
+        As I stumble upon examples, they will be included here.

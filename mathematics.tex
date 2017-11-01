@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 
-\include{config/packages}                                                       % Packages for this project
-\include{config/commands}                                                       % Custom commands for this project
+\input{config/packages}  % Packages for this project
+\input{config/commands}  % Custom commands for this project
 
 
 \title{Mathematics}
@@ -31,26 +31,35 @@
 
 
 % % % MAIN TEXT % % %
+\section{Modern algebra}
+    Modern algebra \cite{joyce2008}, or abstract algebra, is the mathematical branch that studies sets and associated operations (algebraic structures) and relations between them.
 
-\include{main/modern_algebra}
+    \input{main/modern_algebra/functions}
 
-\newpage
-\include{main/commutators}
+    \input{main/modern_algebra/algebraic_structures}
 
-\newpage
-\include{main/exponentials}
+    \input{main/modern_algebra/morphisms}
 
-\newpage
-\include{main/vector_derivatives}
+    \input{main/modern_algebra/representation_theory}
 
-\newpage
-\include{main/symmetric_eigenvalue_problem}
+
+\section{Linear algebra}
+    Let's continue with linear algebra. I won't cover everything, but only the things I've studied thorougly during my Ph. D.
+
+    \newpage
+    \input{main/linear_algebra/commutators}
+
+    \newpage
+    \input{main/linear_algebra/vector_derivatives}
+
+    \newpage
+    \input{main/linear_algebra/symmetric_eigenvalue_problem}
 
 
 % % % APPENDICES % % %
 \newpage
 \begin{appendices}
-    \include{appendices/proofs}
+    \input{appendices/proofs}
 \end{appendices}
 
 

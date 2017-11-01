@@ -1,0 +1,64 @@
+\subsection{Morphisms}
+    A morphism is a map from one algebraic structure to another, preserving its structure.
+
+    \subsubsection{Group homomorphisms and group isomorphisms - mathematical definitions}
+        Say we have a group $G$ with elements $\set{a, b, \cdots}$ and group multiplication $\cdot$. Say we also have another group $G'$ with elements $\set{a', b', \cdots}$ and group multiplication $\cdot'$. A group homomorphism is a function
+        \begin{equation}
+           h: G \rightarrow G': g \mapsto g' = h(g)
+        \end{equation}
+        such that
+        \begin{equation}
+           \forall a, b \in G: h(a \cdot b) = h(a) \cdot' h(b) \thinspace .
+        \end{equation}
+        From this definition we can show that the identity $e$ of $G$ is mapped onto the identity $e'$ of $G'$ and that
+        \begin{equation}
+           \forall a \in G: h(a^{-1}) = h(a)^{-1}
+        \end{equation}
+        such that we can say that the function $h$ (the relation between the two groups) is compatible with the group structure. The proofs are given in appendix \ref{app:proof_hom_id} and \ref{app:proof_hom_inv} respectively. \\
+
+        Equivalently, we can write for a group homomorphism $h$:
+        \begin{align}
+            h: G \rightarrow G': &\forall a, b, c \in G: \\
+            &a \cdot b = c \Rightarrow h(a) \cdot' h(b) = h(c) \thinspace .
+        \end{align}
+
+        A special type of group homomorphism is a group endomorphism. This is a group homomorphism from a set $G$ to itself:
+        \begin{equation}
+            h: G \rightarrow G
+        \end{equation}
+
+        Another special group homomorphism is a group isomorphism. It is a group homomorphism that is bijective. \\
+
+    \subsubsection{Examples of group homomorphisms and group isomorphisms}
+        As I stumble upon examples, they will be included here.
+
+    \subsubsection{Linear operators - mathematical definition}
+        A linear map $M$ is a function (= mapping) between two vector spaces $V$ and $W$:
+        \begin{equation}
+            M: V \rightarrow W \thinspace ,
+        \end{equation}
+        such that $\forall \vb{u}, \vb{v} \in V; \forall a \in \F:$
+        \begin{align}
+            &M(\vb{u} + \vb{v}) = M(\vb{u}) + M(\vb{v})     && \text{$M$ `preserves' vector addition} \\
+            &M(a \vb{u}) = a M(\vb{u})                      && \text{$M$ `preserves' scalar multiplication}
+        \end{align}
+        From this definition, we can see that a linear operator can be called a vector space homomorphism. \\
+
+        Extending the concept of a linear map, we can introduce the term linear operator. A linear operator is a linear map $T$ from a vector space $V$ to itself, i.e. an endomorphism of $V$:
+        \begin{equation}
+            T: V \rightarrow V \thinspace .
+        \end{equation}
+        An automorphism is an invertible linear map from $V$ to itself. We can show that the set $\Aut(V)$, being the set of invertible linear operators of the vector space $V$ forms a group under the group operation operator multiplication.
+
+    \subsubsection{Examples of isomorphisms}
+        Let us consider a subset $C$ of the matrices with real entries ($x, y \in \R$), consisting of matrices of the form
+        \begin{equation}
+            \begin{pmatrix} x & y \\ -y & x \end{pmatrix}
+        \end{equation}
+        Then, defining $f$ as the field isomorphism $f: C \rightarrow \C$;
+        \begin{equation}
+            \begin{pmatrix} x & y \\ -y & x \end{pmatrix} \mapsto x + yi \thinspace ,
+        \end{equation}
+        it can be seen that the field $(C, +, \cdot)$ is isomorphic to the field $(\C, +, \cdot)$. \\
+
+        We have seen that $\text{Aut}(V)$ is the automorphism group of $V$. By introducing a basis in $V$, we can represent these invertible linear operators as invertible linear matrices and we can say that $\Aut(V)$ is isomorphic (one-to-one correspondence) to $\GLg(n)$. \\
