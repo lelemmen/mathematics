@@ -27,6 +27,7 @@
         \end{equation}
 
     \subsection{Formulas to convert commutators to commutators}
+        Using the definitions, we can derive some useful formulas for converting commutators of products to sums of commutators:
         \begin{align}
             & \comm{A}{BC} = B \comm{A}{C} + \comm{A}{B} C \\
             & \comm{AB}{C} = A \comm{B}{C} + \comm{A}{C}B \\
@@ -35,22 +36,25 @@
             & \comm{A}{BCD} = BC \comm{A}{D} + B \comm{A}{C} D + \comm{A}{B} CD
         \end{align}
 
-        For a sufficiently well-behaved function $f$, if $\comm{\comm{A}{B}}{B} = 0$:
+        In general, we can summarize these formulas as
         \begin{equation}
-            \comm{A}{f(B)} = f'(B) \comm{A}{B}
+            \comm{A}{B_1 B_2 \cdots B_n} = \comm{A}{\prod_{k=1}^n B_k} = \sum_{k=1}^n B_1 \cdots B_{k-1} \comm{A}{B_k} B_{k+1} \cdots B_n \thinspace .
         \end{equation}
 
+        Concerning sufficiently well-behaved functions $f$ of $B$, we can prove that
         \begin{equation}
-            \comm{A}{\prod_{k=1}^n B_k} = \sum_{k=1}^n B_1 \cdots B_{k-1} \comm{A}{B_k} B_{k+1} \cdots B_n
+            \comm{\comm{A}{B}}{B} = 0 \qquad\Rightarrow\qquad \comm{A}{f(B)} = f'(B) \comm{A}{B} \thinspace .
         \end{equation}
 
     \subsection{Formulas to convert commutators to anticommutators}
+        In electronic structure theory, we often want to end up with anticommutators:
         \begin{align}
             & \comm{A}{BC} = \comm{A}{B}_+ C - B \comm{A}{C}_+ \\
             & \comm{AB}{C} = A \comm{B}{C}_+ - \comm{A}{C}_+ B
         \end{align}
 
     \subsection{Formulas to convert anticommutators}
+        In electronic structure theory, we often end up with anticommutators. In case there are still products inside, we can use the following formulas:
         \begin{align}
             & \comm{A}{BC}_+ = \comm{A}{B} C + B \comm{A}{C}_+ \\
             & \comm{A}{BC}_+ = \comm{A}{B}_+ C - B \comm{A}{C} \\
