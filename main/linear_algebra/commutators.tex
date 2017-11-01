@@ -1,5 +1,4 @@
 \subsection{Formulas for commutators and anticommutators}
-    \subsubsection{General formulas}
         When an addition and a multiplication are both defined between elements of a set $\set{A, B, C, D, \dots}$, we can check if multiplication is commutative by calculation the commutator:
         \begin{equation}
             \comm{A}{B} = AB - BA \thinspace .
@@ -26,7 +25,6 @@
             \comm{U^\dagger A U}{U^\dagger B U } = U^\dagger \comm{A}{B} U \thinspace .
         \end{equation}
 
-    \subsubsection{Formulas to convert commutators to commutators}
         Using the definitions, we can derive some useful formulas for converting commutators of products to sums of commutators:
         \begin{align}
             & \comm{A}{BC} = B \comm{A}{C} + \comm{A}{B} C \\
@@ -46,14 +44,12 @@
             \comm{\comm{A}{B}}{B} = 0 \qquad\Rightarrow\qquad \comm{A}{f(B)} = f'(B) \comm{A}{B} \thinspace .
         \end{equation}
 
-    \subsubsection{Formulas to convert commutators to anticommutators}
         In electronic structure theory, we often want to end up with anticommutators:
         \begin{align}
             & \comm{A}{BC} = \comm{A}{B}_+ C - B \comm{A}{C}_+ \\
             & \comm{AB}{C} = A \comm{B}{C}_+ - \comm{A}{C}_+ B
         \end{align}
 
-    \subsubsection{Formulas to convert anticommutators}
         In electronic structure theory, we often end up with anticommutators. In case there are still products inside, we can use the following formulas:
         \begin{align}
             & \comm{A}{BC}_+ = \comm{A}{B} C + B \comm{A}{C}_+ \\
@@ -61,13 +57,6 @@
             & \comm{AB}{C}_+ = A \comm{B}{C}_+ - \comm{A}{C} B \\
             & \comm{AB}{C}_+ = \comm{A}{C}_+ B + A \comm{B}{C}
         \end{align}
-
-    \subsection{Exponentials}
-        The exponential of a matrix or operator $A$ is defined as
-        \begin{equation}
-            \exp(A) = \sum_{n=0}^{+\infty} \frac{1}{n!} A^n \thinspace ,
-        \end{equation}
-        if the sum converges. \\
 
         The elementary BCH (Baker-Campbell-Hausdorff) formula reads
         \begin{equation}
