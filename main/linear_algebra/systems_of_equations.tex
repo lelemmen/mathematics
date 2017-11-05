@@ -1,0 +1,31 @@
+\subsection{Solving systems of equations}
+    The goal of solving systems of equations is to solve equations of the type
+    \begin{equation} \label{eq:system_of_equations}
+        \vb{f}(\vb{x}) = \vb{0} \thinspace ,
+    \end{equation}
+    in which $\vb{f}$ is a vector field as in equation (\ref{eq:vector_field}). In order to solve equation (\ref{eq:system_of_equations}), we use a linear approximation of $\vb{f}$ at a specified $\vb{x}_0$:
+    \begin{equation} \label{eq:system_of_equations_jacobian}
+        \vb{f}(\vb{x}) \approx \vb{f}(\vb{x}_0) + \vb{J}(\vb{x}_0) (\vb{x} - \vb{x}_0) \thinspace ,
+    \end{equation}
+    in which $\vb{J}(\vb{x}_0)$ is the Jacobian (cfr. equation (\ref{eq:jacobian})) of $\vb{f}$, calculated at the point $\vb{x}_0$, which immediately signifies the meaning of the Jacobian: it is a generalization of the concept of derivative.
+
+\subsubsection{Newton's method}
+    Combining equations (\ref{eq:system_of_equations}) and (\ref{eq:system_of_equations_jacobian}), we get
+    \begin{align}
+        \vb{f}(\vb{x}_0) + \vb{J}(\vb{x}_0) (\vb{x} - \vb{x}_0) &\approx \vb{0} \\
+        \vb{J}(\vb{x}_0) (\vb{x} - \vb{x}_0) & \approx - \vb{f}(\vb{x}_0) \label{eq:system_of_equations_approx} \thinspace ,
+    \end{align}
+    which means that if we have an initial $\vb{x}_0$ (a guess for the solution), we can in principle calculate an improved guess $\vb{x}$. Newton's method thus goes as follows \cite{burden2010}:
+    \begin{enumerate}
+        \item Choose an initial guess $\vb{x}_0$
+        \item \label{en:newton:first} In the $(i+1)$-th iteration, solve (\ref{eq:system_of_equations_approx}) for $\Delta \vb{x}_{i+1} = \vb{x}_{i+1} - \vb{x}_i$.
+        \item Update
+            \begin{equation}
+                \vb{x}_{i+1} = \vb{x}_i + \Delta \vb{x}_{i+1}
+            \end{equation}
+        \item \label{en:newton:last} Recalculate the Jacobian and the vector field at $\vb{x}_{i+1}$.
+        \item Repeat steps \ref{en:newton:first} until \ref{en:newton:last} until convergence is achieved:
+            \begin{equation}
+                || \Delta \vb{c}_{i+1} || < \epsilon
+            \end{equation}
+    \end{enumerate}
