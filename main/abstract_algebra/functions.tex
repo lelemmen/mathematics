@@ -62,6 +62,20 @@
             \label{fig:non_functions}
         \end{figure}
 
+        The identity function on a set $S$ is the function:
+        \begin{equation}
+            \id_S: S \rightarrow S: \id_S(s) = s \thinspace .
+        \end{equation}
+
+        An operation can hardly be distinguished from the definition of a function that was already given. It is a function
+        \begin{equation}
+            \omega: Y_1 \times \cdots \times Y_N \rightarrow X \thinspace ,
+        \end{equation}
+        which takes as an input one element of every of its input sets $Y_i$ and relates that combination to the output set $X$. For me, this definition is exactly equal to the definition that was given previously. However, it seems that the term operation is often used to talk about associativity, commutativity, etc. \\
+
+        We know many operations, for example number addition, which takes two numbers as input and relates that combination to a number. Number multiplication is another example of a binary operation: we take two numbers, whose product is a number. If we take, for example, set of $n \times n$ matrices, then matrix multiplication is an example of a binary operation. Furthermore, we don't have to take inputs from the same sets! We can define scalar multiplication as an operation that relates a number and a vector to a vector. \\
+
+
     \subsubsection{Classification of functions}
         By now, we have seen some examples of functions. In order to classify functions, we will introduce the terms surjection, injection, and bijection. For a visual overview of the terms, see Figure \ref{fig:sur_in_bi}. \\
 
@@ -77,11 +91,6 @@
 
         A function is called bijective (or: one-to-one and onto, a one-to-one correspondence), if it is both injective and surjective: every element of the codomain is mapped to by exactly one element of the domain. \\
 
-        The identity function on a set $S$ is the function:
-        \begin{equation}
-            \id_S: S \rightarrow S: \id_S(s) = s \thinspace .
-        \end{equation}
-
         \begin{figure}[H] \centering
             \includegraphics{images/sur_in_bi}
             \caption{A visual scheme of the terms surjective, injective and bijective.}
@@ -89,12 +98,3 @@
         \end{figure}
 
         Given Figure \ref{fig:sur_in_bi}, we can already see examples of surjective and injective functions. In Figure \ref{fig:function_color}, we can see an example of a function that is not surjective (not every color is mapped to), nor injective (the color red is mapped to twice). \\
-
-    \subsubsection{More types of functions}
-        An operation is a special kind of function. It is a function
-        \begin{equation}
-            \omega: X^n \rightarrow X \thinspace ,
-        \end{equation}
-        which takes $n$ elements from the set $X$ as input, and relates that combination to the set $X$ itself. \\
-
-        We know many operations, for example number addition, which takes two numbers as input and relates that combination to another number. Number multiplication is another example of a binary operation: we take two numbers, whose product is another number. The set $X$ is not confined to be a set of numbers. If we take, for example, set of $n \times n$ matrices, then matrix multiplication is an example of a binary operation. \\
