@@ -2,7 +2,7 @@
     Now that we have defined a bilinear operation, we can continue by adding another, more advanced, algebraic structure called an algebra.
 
     \subsubsection{The mathematical definition of an algebra}
-        If we have a vector space $V$ over a field $\F$, we already have two operations available: vector addition and scalar multiplication. The natural way to extend this concept, is to define a map that combines two vectors into another vector. That is exactly how we end up with an algebra. If now add a bilinear operator $\star$ to a vector space $V$ over $\F$, then we will call $V$ an algebra (with $\star$) over $V$. \\
+        If we have a vector space $V$ over a field $\F$, we already have two operations available: vector addition and scalar multiplication. The natural way to extend this concept, is to define a map that combines two vectors into another vector. That is exactly how we end up with an algebra. If now add a bilinear operator $\star$ to a vector space $V$ over $\F$, then we will call $V$ an algebra (with $\star$) over $V$. Again, there is an unfortunate notation in which both $V$ represents the algebra, as well as the \\
 
         In some sense we could say that algebras are a generalization of fields in the way that field multiplication is now generalized to the bilinear operation of the algebra. In a sense, we can call the field multiplication a bilinear operation (in which the vector space associated to the bilinear operation is the field over itself). \\
 
@@ -12,6 +12,12 @@
         \end{equation}
         in which $f_{ijk}$ are called the structure constants of the algebra. \\
 
+        If $\star$ is associative, i.e.
+        \begin{equation}
+            \forall \vb{u}, \vb{v}, \vb{w}: \vb{u} \star (\vb{v} \star \vb{w}) = (\vb{u} \star \vb{v}) \star \vb{w} \thinspace ,
+        \end{equation}
+        then the algebra is called associative.
+
     \subsubsection{Examples of algebras}
         We all know examples of algebras, with the easiest example being the $(n \times n)$-matrices with matrix multiplication. \\
 
@@ -20,16 +26,29 @@
         \begin{enumerate}
             \item alternativity
             \begin{equation}
-                \forall x \in \glie: \comm{x}{x} = 0
+                \forall T_a \in \glie: \comm{T_a}{T_a} = 0
             \end{equation}
 
             \item the Jacobi identity
             \begin{equation}
-                \forall x, y, z \in \glie: \comm{x}{\comm{y}{z}} + \comm{z}{\comm{x}{y}} + \comm{y}{\comm{z}{x}} = 0
+                \forall T_a, T_b, T_c \in \glie: \comm{T_a}{\comm{T_b}{T_c}} + \comm{T_c}{\comm{T_a}{T_b}} + \comm{T_b}{\comm{T_c}{T_a}} = 0
             \end{equation}
         \end{enumerate}
 
         It can be shown that bilinearity and alternativity together imply anticommutativity:
         \begin{equation}
-            \forall x, y \in \glie: \comm{y}{x} = - \comm{x}{y} \thinspace .
+            \forall T_a, T_b \in \glie: \comm{T_b}{T_a} = - \comm{T_a}{T_b} \thinspace .
         \end{equation}
+
+        In the physics community, the elements $T_a, T_b, \cdots$ are called the generators of the algebra if they are a basis for the underlying vector field. \\
+
+        For the structure constants, the Jacobi identity implies
+        \begin{equation}
+            \sum_d^n (f_{bcd} f_{ade} + f_{abd} f_{cde} + f_{cad} f_{bde}) = 0 \thinspace .
+        \end{equation}
+
+        It is interesting to note that every associative algebra $A$ over a field $\F$ admits a Lie algebra $L(A)$ over the same field $\F$ (both having the same underlying vector space $V$), by defining the Lie bracket as the commutator:
+        \begin{equation}
+            \comm{T_a}{T_b} = T_a T_b - T_b T_a \thinspace .
+        \end{equation}
+        The associative algebra $A$ is then called the enveloping algebra of the Lie algebra $L(A)$.
