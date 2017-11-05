@@ -13,19 +13,17 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/r
                    INPUTS
                         config/commands.tex
                         config/packages.tex
-                        main/abstract_algebra/abstract_algebra.tex
-                        main/abstract_algebra/algebraic_structures.tex
-                        main/abstract_algebra/algebras.tex
-                        main/abstract_algebra/bilinear_operations.tex
-                        main/abstract_algebra/functions.tex
-                        main/abstract_algebra/morphisms.tex
-                        main/abstract_algebra/representation_theory.tex
-                        main/linear_algebra/commutators.tex
-                        main/linear_algebra/fields.tex
-                        main/linear_algebra/linear_algebra.tex
-                        main/linear_algebra/matrix.tex
-                        main/linear_algebra/symmetric_eigenvalue_problem.tex
-                        main/linear_algebra/systems_of_equations.tex
+                        main/algebraic_structures.tex
+                        main/algebras.tex
+                        main/bilinear_operations.tex
+                        main/commutators.tex
+                        main/fields.tex
+                        main/functions.tex
+                        main/matrix.tex
+                        main/morphisms.tex
+                        main/representation_theory.tex
+                        main/symmetric_eigenvalue_problem.tex
+                        main/systems_of_equations.tex
 						appendices/proofs.tex
 					IMAGE_DIRS
 						images

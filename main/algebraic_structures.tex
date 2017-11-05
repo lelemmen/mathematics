@@ -1,7 +1,7 @@
-\subsection{Algebraic structures}
+\section{Algebraic structures}
     Algebraic structures are a combination of a set, together with one or more operations, satisfying a list of axioms.
 
-    \subsubsection{The mathematical definition of a group} \label{sec:group_def}
+    \subsection{The mathematical definition of a group} \label{sec:group_def}
         A group has a mathematical definition. It is a set $G$\footnote{We often use the same symbol to denote the set of group elements and the actual group. I don't think there is anything wrong with this, as the distinction is most often clear from the context.} with elements $G=\set{g_1, g_2, \dots, g_n}$, together with an operation $\cdot$ (which is often called the group multiplication), meeting the following axioms:
         \begin{enumerate}
             \item closedness
@@ -34,7 +34,7 @@
         \end{enumerate}
         is also met, the group is called Abelian. \\
 
-    \subsubsection{Examples of groups}
+    \subsection{Examples of groups}
         Since the definition of a group is so abstract, let us try to examine some examples of groups. \\
 
         As a first, let us consider a group that is familiar to all of us. Let us take the set $\mathbb{R}_0$: the rational numbers excluding $0$, together with the operation of multiplication. We can check that every group axiom holds (the identity element is $1$, and we know the inverse of every real number), even the commutative one. We can therefore say that $\mathbb{R}_0$ with multiplication is an Abelian group. \\
@@ -86,7 +86,7 @@
         \end{table}
         Given the multiplication table in Table \ref{table:multiplication_table_C3v}, we can verify that the set $G$, together with the group multiplication forms a non-Abelian group. \\
 
-    \subsubsection{The mathematical definition of a field}
+    \subsection{The mathematical definition of a field}
         A field is a set $\F$ together with two binary operations $+$ and $\cdot$, which fulfills
         \begin{enumerate}
             \item $\F$, together with the operation $+$ is an Abelian group
@@ -103,7 +103,7 @@
 
         In some sense, this distributive property just means that scalar multiplication is a bilinear operation. \\
 
-    \subsubsection{The mathematical definition of a vector space}
+    \subsection{The mathematical definition of a vector space}
         A vector space over a field $F$ is a set of vectors ($\vb{v} \in V$) together with two binary operations: the vector addition, $+$, and the scalar multiplication with an element of the field, $\cdot$, fulfilling the following axioms:
             \begin{enumerate}
                 \item $(V,+)$ is an Abelian group
@@ -134,7 +134,7 @@
                 \end{equation}
             \end{enumerate}
 
-    \subsubsection{Examples of vector spaces}
+    \subsection{Examples of vector spaces}
         Every field $\F$ is, in a sense, a vector space over itself, in which scalar multiplication is replaced by the field multiplication, and vector addition is replaced by field addition. \\
 
         $\R^n$, with elements being column matrices of dimension $n$, together with matrix addition and scalar multiplication, forms a vector space over $\vb{R}$. \\
