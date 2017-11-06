@@ -32,24 +32,6 @@
     \subsection{Examples of group homomorphisms and group isomorphisms}
         As I stumble upon examples, they will be included here.
 
-    \subsection{Linear operators - mathematical definition}
-        A linear map $M$ is a function (= mapping) between two vector spaces $V$ and $W$:
-        \begin{equation}
-            M: V \rightarrow W \thinspace ,
-        \end{equation}
-        such that $\forall \vb{u}, \vb{v} \in V; \forall a \in \F:$
-        \begin{align}
-            &M(\vb{u} + \vb{v}) = M(\vb{u}) + M(\vb{v})     && \text{$M$ `preserves' vector addition} \\
-            &M(a \vb{u}) = a M(\vb{u})                      && \text{$M$ `preserves' scalar multiplication}
-        \end{align}
-        From this definition, we can see that a linear operator can be called a vector space homomorphism. \\
-
-        Extending the concept of a linear map, we can introduce the term linear operator. A linear operator is a linear map $T$ from a vector space $V$ to itself, i.e. an endomorphism of $V$:
-        \begin{equation}
-            T: V \rightarrow V \thinspace .
-        \end{equation}
-        An automorphism is an invertible linear map from $V$ to itself. We can show that the set $\Autg(V)$, being the set of invertible linear operators of the vector space $V$ forms a group under the group operation operator multiplication.
-
     \subsection{Examples of isomorphisms}
         Let us consider a subset $C$ of the matrices with real entries ($x, y \in \R$), consisting of matrices of the form
         \begin{equation}
@@ -62,3 +44,6 @@
         it can be seen that the field $(C, +, \cdot)$ is isomorphic to the field $(\C, +, \cdot)$. \\
 
         We have seen that $\text{Aut}(V)$ is the automorphism group of $V$. By introducing a basis in $V$, we can represent these invertible linear operators as invertible linear matrices and we can say that $\Autg(V)$ is isomorphic (one-to-one correspondence) to $\GLg(n)$. \\
+
+    \subsection{Examples of vector space morphisms}
+        From its definition, we can see that a linear map can be called a vector space homomorphism. \\

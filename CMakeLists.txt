@@ -15,10 +15,10 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/r
                         config/packages.tex
                         main/algebraic_structures.tex
                         main/algebras.tex
-                        main/bilinear_operations.tex
                         main/commutators.tex
                         main/fields.tex
                         main/functions.tex
+                        main/linear_maps.tex
                         main/matrix.tex
                         main/morphisms.tex
                         main/representation_theory.tex

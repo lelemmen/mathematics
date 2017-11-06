@@ -1,0 +1,40 @@
+\section{Linear maps}
+    \subsection{Linear maps and linear operators}
+        A linear map $T$ is a function (= map, mapping) between two vector spaces $V$ and $W$ over a field $\F$:
+        \begin{equation}
+            T: V \rightarrow W \thinspace ,
+        \end{equation}
+        such that $\forall \vb{v}_1, \vb{v}_2 \in V; \forall a \in \F:$
+        \begin{align}
+            &T(\vb{v}_1 + \vb{v}_2) = T(\vb{v}_1) + T(\vb{v}_2)     && \text{$T$ `preserves' vector addition} \\
+            &T(a \vb{v}_1) = a T(\vb{v}_1)                          && \text{$T$ `preserves' scalar multiplication}
+        \end{align}
+
+        We will call the set of all linear maps from $V$ to $W$ $\mathcal{L}(V, W)$. If we define the sum of two linear maps $S$ and $T$ and the scalar product of an element $a \in \F$ with a linear map $T$ such that $\forall \vb{v} \in V:$
+        \begin{align}
+            &(S + T)(\vb{v}) = S(\vb{v}) + T(\vb{v}) \\
+            &(aS)(\vb{v}) = a(S(\vb{v})) \thinspace ,
+        \end{align}
+        respectively, we can show that $\mathcal{L}(V, W)$ forms a vector space over the field $\F$. \\
+
+        A linear operator is a linear map $T$ from a vector space $V$ to itself:
+        \begin{equation}
+            T: V \rightarrow V \thinspace .
+        \end{equation}
+        Obviously, $\mathcal{L}(V) = \mathcal{L}(V, V)$ also forms a vector space over $\F$.
+
+    \subsection{Bilinear maps}
+        Let $U, V, W$ be vector spaces over a field $\F$. A bilinear function is a function
+        \begin{equation}
+            f: U \times V \rightarrow W: (\vb{u}, \vb{v}) \mapsto f(\vb{u}, \vb{w}) = \vb{w} \thinspace ,
+        \end{equation}
+        such that $f$ is linear in both of its arguments. This means that $\forall \vb{u}_1, \vb{u}_2 \in U; \forall \vb{v}_1, \vb{v}_2 \in V; \forall a, b, c, d \in \F:$
+        \begin{equation}
+            f(a \vb{u}_1 + b \vb{u}_2, c \vb{v}_1 + d \vb{v}_2) = ac \thinspace f(\vb{u}_1, \vb{v}_1) + ad \thinspace f(\vb{u_1}, \vb{v}_2) + bc \thinspace f(\vb{u}_2, \vb{v}_1) + bd \thinspace f(\vb{u}_2, \vb{v}_2) \thinspace .
+        \end{equation}
+
+        An example of a bilinear map is general matrix multiplication. In the most general case, matrix multiplication is a bilinear map between $\R^{m \times n}$ and $\R^{n \times p}$ to $\R^{m \times p}$. \\
+
+        In the case that $U=V$, and $W$ is the field $\F$ itself, we would talk about a bilinear form. \\
+
+        An example of a bilinear form would be an inner product on $V$. \\
