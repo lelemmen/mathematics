@@ -24,7 +24,6 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/r
                         main/representation_theory.tex
                         main/symmetric_eigenvalue_problem.tex
                         main/systems_of_equations.tex
-						appendices/proofs.tex
 					IMAGE_DIRS
 						images
 					)
