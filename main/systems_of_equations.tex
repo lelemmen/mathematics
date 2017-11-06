@@ -29,3 +29,49 @@
                     || \Delta \vb{c}_{i+1} || < \epsilon
                 \end{equation}
         \end{enumerate}
+
+    \subsection{Broyden's method}
+        Broyden's method \cite{burden2010, broyden1965} is a quasi-Newton method that eliminates the need to recompute the Jacobian matrix at every iteration step. In the $i+1$-th step of the iteration, we use an approximation for the Jacobian matrix, which we shall denote by $\vb{A}_i$:
+        \begin{equation}
+            \vb{A}_i (\vb{x}_{i+1} - \vb{x}_i) = \vb{f}(\vb{x}_{i+1}) - \vb{f}(\vb{x}_i) \thinspace ,
+        \end{equation}
+        or using a simplified notation:
+        \begin{equation} \label{eq:broyden1}
+            \vb{A}_i \Delta \vb{x}_{i+1} = \Delta \vb{f}_{i+1} \thinspace .
+        \end{equation}
+        These equations show the action of $\vb{A}_{i+1}$ on $\Delta \vb{x}_{i+1}$. However, to fully characterize $\vb{A}_{i+1}$, we must also know its action on a vector $\vb{z}_i$ that is in the orthogonal complement of $\Delta \vb{x}_{i+1}$. Since we have no information about this, we specify that there should be no change made in this direction, i.e.
+        \begin{equation} \label{eq:broyden2}
+            \forall \vb{z}_i: \vb{z}_i \cdot \Delta \vb{x}_{i} = 0: \qquad \vb{A}_{i+1} \vb{z}_i = \vb{A}_i \vb{z}_i
+        \end{equation}
+        We can show that the (unique) solution to equations (\ref{eq:broyden1}) and (\ref{eq:broyden2}) is
+        \begin{equation}
+            \vb{A}_{i+1} = \vb{A}_i + \frac{\Delta \vb{f}_{i+1} - \vb{A}_i \Delta \vb{x}_{i+1}}{|| \Delta \vb{x}_{i+1} ||^2} \Delta \vb{x}_{i+1}^T \thinspace ,
+        \end{equation}
+        which is of the form $(\vb{A} + \vb{x} \vb{y}^T)$, for $\vb{A}$ nonsingular and $\vb{y}^T \vb{A}^{-1} \vb{x} \neq -1$, such that we can use the Sherman-Morrison formula \cite{burden2010}
+        \begin{equation}
+            (\vb{A} + \vb{x} \vb{y}^T)^{-1} = \vb{A}^{-1} - \frac{\vb{A}^{-1} \vb{x} \vb{y}^T \vb{A}^{-1}}{1 + \vb{y}^T \vb{A}^{-1} \vb{x}} \thinspace ,
+        \end{equation}
+        which leads to
+        \begin{equation} \label{eq:broyden_A_update}
+            \vb{A}_{i+1}^{-1} = \vb{A}_i^{-1} + \frac{(\Delta \vb{x}_{i+1} - \vb{A}^{-1}_i \Delta \vb{f}_{i+1}) \Delta \vb{x}_{i+1}^T \vb{A}_i^{-1}}{\Delta \vb{x}^T_{i+1} \vb{A}^{-1}_i \Delta \vb{f}_{i+1}} \thinspace .
+        \end{equation}
+        All in all, this makes the solution to equation (\ref{eq:broyden1}) when requiring $\vb{f}(\vb{x}_{i+1}) = \vb{0}$ easier to compute:
+        \begin{equation} \label{eq:broyden_delta_x}
+            \Delta \vb{x}_{i+1} = - \vb{A}_i^{-1} \vb{f}(\vb{x}_i) \thinspace ,
+        \end{equation}
+        which means that the (possibly) time-consuming step of calculating the Jacobian over and over again in Newton' method, is avoided. \\
+
+        Broyden's method goes as follows:
+        \begin{enumerate}
+            \item Choose an initial guess $\vb{x}_0$ and calculate $\vb{A}_0^{-1} = \vb{J}(\vb{x}_0)^{-1}$, with $\vb{J}$ the exact Jacobian
+            \item \label{en:broyden:first} Solve equation (\ref{eq:broyden_delta_x})
+            \item Update the guess
+                \begin{equation}
+                    \vb{x}_{i+1} = \vb{x}_i + \Delta \vb{x}_{i+1}
+                \end{equation}
+            \item \label{en:broyden:last} Update the inverse of the approximate Jacobian matrix $\vb{A}_{i+1}$ through equation (\ref{eq:broyden_A_update})
+            \item Repeat steps \ref{en:broyden:first} through \ref{en:broyden:last} until convergence is achieved:
+                \begin{equation}
+                    || \Delta \vb{x}_{i+1} || < \epsilon
+                \end{equation}
+        \end{enumerate}
