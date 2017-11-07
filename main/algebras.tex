@@ -66,3 +66,42 @@
         \begin{equation}
             \glie = \set{M \in \F^{n \times n}; \forall t \in \R: \exp(t M) \in G} \thinspace .
         \end{equation}
+
+    \subsection{The generalized Gaudin algebra}
+        Let us take a vector space spanned by the operators $\set{S^\kappa_u}$, where $\kappa=x,y,z$ and $S^\kappa_u \equiv S^\kappa(u)$ and $u \in \C$. The bilinear operation $\comm{\cdot}{\cdot}$ of the algebra is characterized by ($u \neq v$)
+        \begin{align}
+            & \comm{S^\kappa_u}{S^\kappa_v} = 0 \\
+            & \comm{S^x_u}{S^y_v} = i \qty( Y_{uv} S^z_u - X_{uv} S^z_v ) \\
+            & \comm{S^y_u}{S^z_v} = i \qty( Z_{uv} S^x_u - Y_{uv} S^x_v ) \\
+            & \comm{S^z_u}{S^x_v} = i \qty( X_{uv} S^y_u - Z_{uv} S^y_v ) \thinspace ,
+        \end{align}
+        in which $X_{uv} \equiv X(u,v)$, $Y_{uv} \equiv Y(u,v)$ and $Z_{uv} \equiv Z(u,v)$ are antisymmetric, i.e.
+        \begin{equation}
+            X(v, u) = - X(u, v)
+        \end{equation}
+        complex functions. From these commutation relations follows immediately that the generalized Gaudin algebra is a Lie algebra (i.e. the Gaudin bracket is a Lie bracket). Furthermore, for these commutation relations to be consistent with the Jacobi identity $\comm{S^x_u}{\comm{S^x_v}{S^y_w}}$, the Yang-Baxter equation
+        \begin{equation}
+            X(u, v) Y(v, w) + Y(w, u) Z(u, v) + Z(v, w) X(w, u) = 0
+        \end{equation}
+        has to hold. Gaudin \cite{gaudin1976} found solutions to this equation, and we will focus on the so-called $XXX$-case, in which
+        \begin{equation}
+            X(u, v) = Y(u, v) = Z(u, v) = \frac{1}{u - v} \thinspace ,
+        \end{equation}
+        such that the $XXX$-Gaudin algebra reduces to ($u \neq v$)
+        \begin{align}
+            & \comm{S^\kappa_u}{S^\kappa_v} = 0 \\
+            & \comm{S^x_u}{S^y_v} = \frac{i}{u-v} \qty(S^z_u - S^z_v) \\
+            & \comm{S^y_u}{S^z_v} = \frac{i}{u-v} \qty(S^x_u - S^x_v) \\
+            & \comm{S^z_u}{S^x_v} = \frac{i}{u-v} \qty(S^y_u - S^y_v) \thinspace ,
+        \end{align}
+        In this case, it is a good idea to work in the basis
+        \begin{align}
+            & S^+_u = S^x_u + i S^y_u \\
+            & S^-_u = S^x_u - i S^y_u \\
+            & S^z_u = S^z_u \thinspace ,
+        \end{align}
+        with the commutators becoming ($u \neq v$)
+        \begin{align}
+            & \comm{S^+_u}{S^+_v} = \comm{S^-_u}{S^-_v} = \comm{S^z_u}{S^z_v} = 0 \\
+            & \comm{S^+_u}{S^-_v} = \frac{2}{u-v} \qty(S^z_u - S^z_v)
+        \end{align}
