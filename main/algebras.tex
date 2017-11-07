@@ -67,19 +67,49 @@
             \glie = \set{M \in \F^{n \times n}; \forall t \in \R: \exp(t M) \in G} \thinspace .
         \end{equation}
 
+    \subsection{The Lie algebra $\sulie(2)$}
+        If we have a vector space spanned by $\glie = \set{T^x, T^y, T^z}$ with the commutation relations
+        \begin{align}
+            & \comm{T^x}{T^y} = i T^z \\
+            & \comm{T^y}{T^z} = i T^x \\
+            & \comm{T^z}{T^x} = i T^y \thinspace ,
+        \end{align}
+        the algebra $\glie$ is said to be $\sulie(2)$. Another basis for $\sulie(2)$ could be given by
+        \begin{align}
+            & T^+ = T^x + i T^y \\
+            & T^- = T^x - i T^y \\
+            & T^z = T^z \thinspace ,
+        \end{align}
+        with the commutators
+        \begin{align}
+            & \comm{T^+}{T^-} = 2 T^z \\
+            & \comm{T^z}{T^\pm} = \pm T^\pm \thinspace ,
+        \end{align}
+        The (quadratic) Casimir invariant of $\sulie(2)$ is given by
+        \begin{align}
+            T^2 &= \qty(T^x)^2 + \qty(T^y)^2 + \qty(T^z)^2 \\
+            &= T^+ T^- - T^z + \qty(T^z)^2 \thinspace ,
+        \end{align}
+        and it commutes with every generator:
+        \begin{align}
+            & \comm{T^2}{T^x} = \comm{T^2}{T^y} = \comm{T^2}{T^z} = 0 \\
+            & \comm{T^2}{T^+} = \comm{T^2}{T^-} = \comm{T^2}{T^z} = 0 \thinspace .
+        \end{align}
+
+
     \subsection{The generalized Gaudin algebra}
-        Let us take a vector space spanned by the operators $\set{S^\kappa_u}$, where $\kappa=x,y,z$ and $S^\kappa_u \equiv S^\kappa(u)$ and $u \in \C$. The bilinear operation $\comm{\cdot}{\cdot}$ of the algebra is characterized by ($u \neq v$)
+        Let us take a vector space spanned by $\set{S^x_u, S^y_u, S^z_u}$, where $S^\kappa_u \equiv S^\kappa(u)$ and $u \in \C$. The algebra is characterized by the commutation relations ($u \neq v$)
         \begin{align}
             & \comm{S^\kappa_u}{S^\kappa_v} = 0 \\
             & \comm{S^x_u}{S^y_v} = i \qty( Y_{uv} S^z_u - X_{uv} S^z_v ) \\
             & \comm{S^y_u}{S^z_v} = i \qty( Z_{uv} S^x_u - Y_{uv} S^x_v ) \\
             & \comm{S^z_u}{S^x_v} = i \qty( X_{uv} S^y_u - Z_{uv} S^y_v ) \thinspace ,
         \end{align}
-        in which $X_{uv} \equiv X(u,v)$, $Y_{uv} \equiv Y(u,v)$ and $Z_{uv} \equiv Z(u,v)$ are antisymmetric, i.e.
+        in which $\kappa=x,y,z$, $X_{uv} \equiv X(u,v)$, $Y_{uv} \equiv Y(u,v)$ and $Z_{uv} \equiv Z(u,v)$ are antisymmetric, i.e.
         \begin{equation}
             X(v, u) = - X(u, v)
         \end{equation}
-        complex functions. From these commutation relations follows immediately that the generalized Gaudin algebra is a Lie algebra (i.e. the Gaudin bracket is a Lie bracket). Furthermore, for these commutation relations to be consistent with the Jacobi identity $\comm{S^x_u}{\comm{S^x_v}{S^y_w}}$, the Yang-Baxter equation
+        complex functions. From these commutation relations follows immediately that the generalized Gaudin algebra is a Lie algebra. Furthermore, for these commutation relations to be consistent with the Jacobi identity $\comm{S^x_u}{\comm{S^x_v}{S^y_w}}$, the Yang-Baxter equation
         \begin{equation}
             X(u, v) Y(v, w) + Y(w, u) Z(u, v) + Z(v, w) X(w, u) = 0
         \end{equation}
