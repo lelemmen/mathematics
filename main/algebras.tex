@@ -68,7 +68,7 @@
         \end{equation}
 
     \subsection{The Lie algebra $\sulie(2)$}
-        If we have a vector space spanned by $\glie = \set{T^x, T^y, T^z}$ with the commutation relations
+        If we have a vector space of operators spanned by $\glie = \set{T^x, T^y, T^z}$ with the commutation relations
         \begin{align}
             & \comm{T^x}{T^y} = i T^z \\
             & \comm{T^y}{T^z} = i T^x \\
@@ -80,11 +80,25 @@
             & T^- = T^x - i T^y \\
             & T^z = T^z \thinspace ,
         \end{align}
+        or, reversely
+        \begin{align}
+            & T^x = \frac{1}{2} \qty(T^+ + T^-) \\
+            & T^y = \frac{1}{2i} \qty(T^+ - T^-) \\
+            & T^z = T^z \thinspace ,
+        \end{align}
         with the commutators
         \begin{align}
             & \comm{T^+}{T^-} = 2 T^z \\
             & \comm{T^z}{T^\pm} = \pm T^\pm \thinspace ,
         \end{align}
+        and $T^+$ being the Hermitian adjoint of $T^-$
+        \begin{equation}
+            T^- = \qty(T^+)^\dagger \thinspace ,
+        \end{equation}
+        and $T^z$ being Hermitian:
+        \begin{equation}
+            \qty(T^z)^\dagger = T^z \thinspace .
+        \end{equation}
         The (quadratic) Casimir invariant of $\sulie(2)$ is given by
         \begin{align}
             T^2 &= \qty(T^x)^2 + \qty(T^y)^2 + \qty(T^z)^2 \\
@@ -96,20 +110,19 @@
             & \comm{T^2}{T^+} = \comm{T^2}{T^-} = \comm{T^2}{T^z} = 0 \thinspace .
         \end{align}
 
-
     \subsection{The generalized Gaudin algebra}
-        Let us take a vector space spanned by $\set{S^x_u, S^y_u, S^z_u}$, where $S^\kappa_u \equiv S^\kappa(u)$ and $u \in \C$. The algebra is characterized by the commutation relations ($u \neq v$)
+        Let us take a vector space spanned by $\set{S^x_u, S^y_u, S^z_u}$, where $S^\kappa_u \equiv S^\kappa(u)$ and $u \in \C$. The generalized Gaudin algebra is characterized by the commutation relations ($u \neq v$)
         \begin{align}
-            & \comm{S^\kappa_u}{S^\kappa_v} = 0 \\
+            & \comm{S^\kappa_u}{S^\kappa_v} = 0 \label{eq:gga_commutators_first} \\
             & \comm{S^x_u}{S^y_v} = i \qty( Y_{uv} S^z_u - X_{uv} S^z_v ) \\
             & \comm{S^y_u}{S^z_v} = i \qty( Z_{uv} S^x_u - Y_{uv} S^x_v ) \\
-            & \comm{S^z_u}{S^x_v} = i \qty( X_{uv} S^y_u - Z_{uv} S^y_v ) \thinspace ,
+            & \comm{S^z_u}{S^x_v} = i \qty( X_{uv} S^y_u - Z_{uv} S^y_v ) \label{eq:gga_commutators_last} \thinspace ,
         \end{align}
         in which $\kappa=x,y,z$, $X_{uv} \equiv X(u,v)$, $Y_{uv} \equiv Y(u,v)$ and $Z_{uv} \equiv Z(u,v)$ are antisymmetric, i.e.
         \begin{equation}
             X(v, u) = - X(u, v)
         \end{equation}
-        complex functions. From these commutation relations follows immediately that the generalized Gaudin algebra is a Lie algebra. Furthermore, for these commutation relations to be consistent with the Jacobi identity $\comm{S^x_u}{\comm{S^x_v}{S^y_w}}$, the Yang-Baxter equation
+        Furthermore, for the commutation relations (\ref{eq:gga_commutators_first}) to (\ref{eq:gga_commutators_last}) to be consistent with the Jacobi identity $\comm{S^x_u}{\comm{S^x_v}{S^y_w}}$, the Yang-Baxter equation
         \begin{equation}
             X(u, v) Y(v, w) + Y(w, u) Z(u, v) + Z(v, w) X(w, u) = 0
         \end{equation}
@@ -132,6 +145,22 @@
         \end{align}
         with the commutators becoming ($u \neq v$)
         \begin{align}
-            & \comm{S^+_u}{S^+_v} = \comm{S^-_u}{S^-_v} = \comm{S^z_u}{S^z_v} = 0 \\
-            & \comm{S^+_u}{S^-_v} = \frac{2}{u-v} \qty(S^z_u - S^z_v)
+            & \comm{S^+_u}{S^+_v} = \comm{S^-_u}{S^-_v} = \comm{S^z_u}{S^z_v} = 0 \label{eq:gaudin_commutators_pp} \\
+            & \comm{S^+_u}{S^-_v} = \frac{2}{u-v} \qty(S^z_u - S^z_v) \label{eq:gaudin_commutators_pm} \\
+            & \comm{S^z_u}{S^\pm_v} = \frac{\pm}{u - v} \qty(S^\pm_u - S^\pm_v) \label{eq:gaudin_commutators_zpm} \thinspace .
         \end{align}
+
+        So far, the form of the generators of the Gaudin algebra has not been specified. To make a specification, we will use $N$ copies of an $\sulie(2)$-algebra, each carrying a real number $\varepsilon_i$ and we will choose in particular
+        \begin{align}
+            & S^+_u = \sum_i^N \frac{T^+_i}{u - \varepsilon_i} \\
+            & S^-_u = \sum_i^N \frac{T^-_i}{u - \varepsilon_i} \\
+            & S^z_u = \frac{1}{g} - \sum_i^N \frac{T^z_i}{u - \varepsilon_i} \thinspace ,
+        \end{align}
+        in which $g$ is a real number. Using the $\sulie(2)$-based realization of the Gaudin algebra, we can indeed show that the commutator relations (\ref{eq:gaudin_commutators_pp}) to (\ref{eq:gaudin_commutators_zpm}) hold. Let us also calculate $S^2_u$:
+        \begin{equation}
+            S^2_u = \frac{1}{g^2} - \frac{2}{g} \sum_i^N \frac{T^z_i}{u - \varepsilon_i} + \frac{1}{2} \sum_{ij}^N \frac{T^+_i T^-_j + T^-_i T^+_j + 2 T^z_i T^z_j}{(u - \varepsilon_i)(u - \varepsilon_j)} \thinspace .
+        \end{equation}
+        This operator has poles at every $\varepsilon_i$, so let's calculate the residues $R_i$. Furthermore, we will calculate a linear combination of the residues $\sum_i^N \varepsilon_i R_i$, leading to the $\sulie(2)$-Hamiltonian \cite{johnsonphd}
+        \begin{equation}
+            H_{\sulie(2)} = \sum_i^N \varepsilon_i T^z_i - g \sum_{ij}^N T^+_i T^-_j \thinspace .
+        \end{equation}
