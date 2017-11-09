@@ -28,6 +28,24 @@
 \DeclareMathOperator{\diag}{diag}                                               % Diagonal matrix
 
 
+
+% This essentially duplicates \substack, but adding an alignment point. https://tex.stackexchange.com/a/198806
+\makeatletter
+\newcommand{\subalign}[1]{%
+  \vcenter{%
+    \Let@ \restore@math@cr \default@tag
+    \baselineskip\fontdimen10 \scriptfont\tw@
+    \advance\baselineskip\fontdimen12 \scriptfont\tw@
+    \lineskip\thr@@\fontdimen8 \scriptfont\thr@@
+    \lineskiplimit\lineskip
+    \ialign{\hfil$\m@th\scriptstyle##$&$\m@th\scriptstyle{}##$\crcr
+      #1\crcr
+    }%
+  }
+}
+\makeatother
+
+
 % Create a custom command for set notation
 %
 \DeclarePairedDelimiterX{\set}[1]{\{}{\}}{\setargs{#1}}

@@ -9,7 +9,7 @@ include(cmake/UseLATEX.cmake)  # I like anti-cluttering by moving the UseLATEX.c
 
 
 # BUILD: Add a file to the specified project
-add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/research_bib.bib
+add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/library.bib
                    INPUTS
                         config/commands.tex
                         config/packages.tex
@@ -20,6 +20,7 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/r
                         main/functions.tex
                         main/linear_maps.tex
                         main/matrix.tex
+                        main/misc.tex
                         main/morphisms.tex
                         main/representation_theory.tex
                         main/symmetric_eigenvalue_problem.tex
