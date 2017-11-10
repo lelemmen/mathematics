@@ -160,7 +160,16 @@
         \begin{equation}
             S^2_u = \frac{1}{g^2} - \frac{2}{g} \sum_i^N \frac{T^z_i}{u - \varepsilon_i} + \frac{1}{2} \sum_{ij}^N \frac{T^+_i T^-_j + T^-_i T^+_j + 2 T^z_i T^z_j}{(u - \varepsilon_i)(u - \varepsilon_j)} \thinspace .
         \end{equation}
-        This operator has poles at every $\varepsilon_i$, so let's calculate the residues $R_i$. Furthermore, we will calculate a linear combination of the residues $\sum_i^N \varepsilon_i R_i$, leading to the $\sulie(2)$-Hamiltonian \cite{johnsonphd}
+        We can see that $S^2_u$ has a single pole when $u \to \varepsilon_k$, in one of the terms, and a double pole when $u \to \varepsilon_k$ in another term. The corresponding residue is calculated as
         \begin{equation}
-            H_{\sulie(2)} = \sum_i^N \varepsilon_i T^z_i - g \sum_{ij}^N T^+_i T^-_j \thinspace .
+            R_k = - \frac{2}{g} T^z_k + \sum_{i \neq k}^N \frac{T^+_i T^-_k + T^-_i T^+_k + 2 T^z_i T^z_k}{\varepsilon_k - \varepsilon_i} \thinspace .
         \end{equation}
+        Paul Johnson \cite{johnsonphd} suggests rescaling $g$ such that
+        \begin{equation}
+            R_k = T^z_k - g \sum_{i \neq k}^N \frac{T^+_i T^-_k + T^-_i T^+_k + 2 T^z_i T^z_k}{\varepsilon_k - \varepsilon_i} \thinspace .
+        \end{equation}
+        A specific linear combination \cite{johnsonphd} of the residues leading to
+        \begin{equation}
+            H_{\text{RG}} = \sum_i^N \varepsilon_i T^z_i - g \sum_{ij}^N T^+_i T^-_j \thinspace ,
+        \end{equation}
+        up to a constant, where the subscript RG stands for Richardson-Gaudin.
