@@ -24,9 +24,9 @@
                     \vb{x}_{i+1} = \vb{x}_i + \Delta \vb{x}_{i+1}
                 \end{equation}
             \item \label{en:newton:last} Recalculate the Jacobian and the vector field at $\vb{x}_{i+1}$.
-            \item Repeat steps \ref{en:newton:first} until \ref{en:newton:last} until convergence is achieved:
+            \item Repeat steps \ref{en:newton:first} to \ref{en:newton:last} until convergence is achieved:
                 \begin{equation}
-                    || \Delta \vb{c}_{i+1} || < \epsilon
+                    || \Delta \vb{x}_{i+1} || < \epsilon \thinspace .
                 \end{equation}
         \end{enumerate}
 

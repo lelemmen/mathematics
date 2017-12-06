@@ -53,3 +53,7 @@
 {\setargsaux#1}
 \NewDocumentCommand{\setargsaux}{mm}
 {\IfNoValueTF{#2}{#1} {#1\,\delimsize|\,\mathopen{}#2}}%{#1\:;\:#2}
+
+
+% Create a custom command for floor
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
