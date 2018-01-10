@@ -5,13 +5,13 @@
             f: \R^n \rightarrow \R: \vb{x} \mapsto f(\vb{x}) \thinspace .
         \end{equation}
 
-        We can then take first-order derivative of the scalar function with respect to the components of $\vb{x}$:
+        The gradient of $f$ evaluated at $\vb{x}$, then is the vector
         \begin{equation}
-            \qty(\pdv{f(\vb{x})}{\vb{x}})_i = \pdv{f(\vb{x})}{x_i} \thinspace ,
+            \grad{f(\vb{x})} \equiv \pdv{f(\vb{x})}{\vb{x}} \thinspace ,
         \end{equation}
-        which is a vector that we will call the gradient:
+        where the components are calculated as
         \begin{equation}
-            \grad{f(\vb{x})} = \pdv{f(\vb{x})}{\vb{x}} \thinspace .
+            \Big( \grad{f(\vb{x})} \Big)_i = \pdv{f(\vb{x})}{x_i}
         \end{equation}
 
         Some useful formulas concerning the derivative of scalar fields with respect to a vector are:
@@ -23,19 +23,24 @@
             & \pdv{\vb{x}} (\vb{x}^\text{T} \vb{A} \vb{x}) = (\vb{A} + \vb{A}^\text{T}) \vb{x} \thinspace .
         \end{align}
 
-        We can also calculate second-order (and subsequently higher-order) derivatives of the scalar function with respect to the components of $\vb{x}$. This second-order derivative is a symmetric matrix and is called the Hessian:
+        We can also calculate second-order (and subsequently higher-order) derivatives of the scalar function with respect to the components of $\vb{x}$. This second-order derivative is a symmetric matrix for twice-differentiable functions and is called the Hessian:
         \begin{equation}
             \vb{H}(\vb{x})_{ij} = \pdv{f(\vb{x})}{x_i}{x_j} \thinspace .
         \end{equation}
 
         Using the previously defined gradient and Hessian, we can write the Taylor expansion of the function $f$ around the point $\vb{x}_0$ as
         \begin{align}
-            f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0)^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0)^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0) + ... \\
-            &= f(\vb{x}_0) + \Delta \vb{x}^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace \Delta \vb{x} + ... \thinspace ,
+            f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0)^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0)^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0) + ... \label{eq:taylor_matrix} \\
+            &= f(\vb{x}_0) + \Delta \vb{x}^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \thinspace \vb{H}(\vb{x}_0) \thinspace \Delta \vb{x} + ... \thinspace ,
         \end{align}
         in which
         \begin{equation}
             \Delta \vb{x} = \vb{x} - \vb{x}_0 \thinspace .
+        \end{equation}
+
+        Equation (\ref{eq:taylor_matrix}) is actually just short-hand notation for the following:
+        \begin{equation}
+            f(\vb{x}) = f(\vb{x}_0) + \sum_i^n \eval{\pdv{f(\vb{x})}{x_i}}_{\vb{x}=\vb{x}_0} (x_i - x_{0,i}) + \frac{1}{2!} \sum_{ij}^n \eval{\pdv{f(\vb{x})}{x_i}{x_j}}_{\vb{x}=\vb{x}_0} (x_i - x_{0,i}) (x_j - x_{0,j}) + ... \thinspace .
         \end{equation}
 
     \subsection{Vector fields}
@@ -48,12 +53,22 @@
             &\vb{f}(\vb{x}) = (f_1(\vb{x}), f_2(\vb{x}), \dots, f_m(\vb{x})) \\
             &\forall f_i: \R^n \rightarrow \R: \vb{x} \mapsto f_i(\vb{x}) \thinspace ,
         \end{align}
-        in which the functions $f_i$ are sometimes called coordinate functions \cite{burden2010}. In a sense, the vector field associates to every vector $\vb{x} \in \R^n$ a vector $\vb{f}(\vb{x}) \in \R^m$.
+        in which the functions $f_i$ are sometimes called coordinate functions \cite{burden2010}. In a sense, the vector field associates to every vector $\vb{x} \in \R^n$ a vector $\vb{f}(\vb{x}) \in \R^m$. \\
 
-        The first-order derivative of a vector field is called the Jacobian:
+        The first-order derivative of a vector field is the matrix
+        \begin{equation}
+            \vb{J} \equiv \pdv{\vb{f}}{\vb{x}} \thinspace ,
+        \end{equation}
+        which is called the Jacobian and has entries
         \begin{equation} \label{eq:jacobian}
             \vb{J}(\vb{x})_{ij} = \pdv{f_i(\vb{x})}{x_j} \thinspace .
         \end{equation}
+
+        Since the gradient of a scalar function is also a vector, we can take the Jacobian of this gradient, leading to
+        \begin{equation}
+            \pdv{\vb{x}} \bigg( \grad{f(\vb{x})} \bigg) = \vb{H}(\vb{x})^\text{T} \thinspace ,
+        \end{equation}
+        which means that the Jacobian of the gradient is the transpose of the Hessian. So, for twice differentiable functions the Hessian is equal to the Jacobian of the gradient. \\
 
         A useful formula concerning the derivative of vector fields with respect to a vector is
         \begin{align}
