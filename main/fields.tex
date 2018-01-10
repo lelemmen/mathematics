@@ -25,7 +25,17 @@
 
         We can also calculate second-order (and subsequently higher-order) derivatives of the scalar function with respect to the components of $\vb{x}$. This second-order derivative is a symmetric matrix and is called the Hessian:
         \begin{equation}
-            \vb{H}_{ij} = \pdv{f(\vb{x})}{x_i}{x_j} \thinspace .
+            \vb{H}(\vb{x})_{ij} = \pdv{f(\vb{x})}{x_i}{x_j} \thinspace .
+        \end{equation}
+
+        Using the previously defined gradient and Hessian, we can write the Taylor expansion of the function $f$ around the point $\vb{x}_0$ as
+        \begin{align}
+            f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0)^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0)^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0) + ... \\
+            &= f(\vb{x}_0) + \Delta \vb{x}^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace \Delta \vb{x} + ... \thinspace ,
+        \end{align}
+        in which
+        \begin{equation}
+            \Delta \vb{x} = \vb{x} - \vb{x}_0 \thinspace .
         \end{equation}
 
     \subsection{Vector fields}
