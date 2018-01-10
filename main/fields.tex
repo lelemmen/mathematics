@@ -30,8 +30,8 @@
 
         Using the previously defined gradient and Hessian, we can write the Taylor expansion of the function $f$ around the point $\vb{x}_0$ as
         \begin{align}
-            f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0)^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0)^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0) + ... \label{eq:taylor_matrix} \\
-            &= f(\vb{x}_0) + \Delta \vb{x}^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \thinspace \vb{H}(\vb{x}_0) \thinspace \Delta \vb{x} + ... \thinspace ,
+            f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0)^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0)^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0) + \cdots \label{eq:taylor_matrix} \\
+            &= f(\vb{x}_0) + \Delta \vb{x}^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \thinspace \vb{H}(\vb{x}_0) \thinspace \Delta \vb{x} + \cdots \thinspace ,
         \end{align}
         in which
         \begin{equation}
@@ -40,7 +40,46 @@
 
         Equation (\ref{eq:taylor_matrix}) is actually just short-hand notation for the following:
         \begin{equation}
-            f(\vb{x}) = f(\vb{x}_0) + \sum_i^n \eval{\pdv{f(\vb{x})}{x_i}}_{\vb{x}=\vb{x}_0} (x_i - x_{0,i}) + \frac{1}{2!} \sum_{ij}^n \eval{\pdv{f(\vb{x})}{x_i}{x_j}}_{\vb{x}=\vb{x}_0} (x_i - x_{0,i}) (x_j - x_{0,j}) + ... \thinspace .
+            f(\vb{x}) = f(\vb{x}_0) + \sum_i^n \eval{\pdv{f(\vb{x})}{x_i}}_{\vb{x}=\vb{x}_0} (x_i - x_{0,i}) + \frac{1}{2!} \sum_{ij}^n \eval{\pdv{f(\vb{x})}{x_i}{x_j}}_{\vb{x}=\vb{x}_0} (x_i - x_{0,i}) (x_j - x_{0,j}) + \cdots \thinspace .
+        \end{equation}
+
+        Often, we would like to separate the $n$ variables contained in $\vb{x}$ in say $m$ variables contained in $\vb{y}$ and $l$ variables contained in $\vb{z}$. Then, $f$ is the function
+        \begin{equation}
+            f: \R^m \cross \R^n \rightarrow \R: (\vb{y}, \vb{z}) \mapsto f(\vb{y}, \vb{z}) \thinspace .
+        \end{equation}
+        The gradient of $f$ is then a blocked vector:
+        \begin{equation}
+            \grad{f(\vb{y}, \vb{z})} =
+            \begin{pmatrix}
+                \pdv{f(\vb{y}, \vb{z})}{\vb{y}} \\
+                \pdv{f(\vb{y}, \vb{z})}{\vb{z}}
+            \end{pmatrix} =
+            \begin{pmatrix}
+                \grad_{\vb{y}}{f(\vb{y}, \vb{z})} \\
+                \grad_{\vb{z}}{f(\vb{y}, \vb{z})}
+            \end{pmatrix}
+            \thinspace ,
+        \end{equation}
+        and the Hessian is a blocked matrix:
+        \begin{equation}
+            \vb{H}(\vb{y}, \vb{z}) =
+            \begin{pmatrix}
+                \pdv[2]{f(\vb{y}, \vb{z})}{\vb{y}} & \pdv{f(\vb{y}, \vb{z})}{\vb{y}}{\vb{z}} \\
+                \pdv{f(\vb{y}, \vb{z})}{\vb{z}}{\vb{y}} & \pdv[2]{f(\vb{y}, \vb{z})}{\vb{z}}
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                \vb{H}_{\vb{y} \vb{y}}(\vb{y}, \vb{z}) & \vb{H}_{\vb{y} \vb{z}}(\vb{y}, \vb{z}) \\
+                \vb{H}_{\vb{z} \vb{y}}(\vb{y}, \vb{z}) & \vb{H}_{\vb{z} \vb{z}}(\vb{y}, \vb{z})
+            \end{pmatrix} \thinspace .
+        \end{equation}
+        This means that an expression for the Taylor expansion of $f$ around $(\vb{y}_0, \vb{z}_0)$ becomes
+        \begin{equation}
+            \begin{split}
+                f(\vb{y}, \vb{z}) = &f(\vb{y}_0, \vb{z}_0) + \Delta \vb{y}^\text{T} \thinspace \grad_{\vb{y}}{f(\vb{y}_0, \vb{z}_0)} + \Delta \vb{z}^\text{T} \thinspace \grad_{\vb{z}}{f(\vb{y}_0, \vb{z}_0)} \\
+                &+ \frac{1}{2!} \Delta \vb{y}^\text{T} \thinspace \vb{H}_{\vb{y} \vb{y}}(\vb{y}_0, \vb{z}_0) \Delta \vb{y} + \frac{1}{2!} \Delta \vb{y}^\text{T} \thinspace \vb{H}_{\vb{y} \vb{z}}(\vb{y}_0, \vb{z}_0) \Delta \vb{z} \\
+                &+ \frac{1}{2!} \Delta \vb{z}^\text{T} \thinspace \vb{H}_{\vb{z} \vb{y}}(\vb{y}_0, \vb{z}_0) \Delta \vb{y} + \frac{1}{2!} \Delta \vb{z}^\text{T} \thinspace \vb{H}_{\vb{z} \vb{z}}(\vb{y}_0, \vb{z}_0) \Delta \vb{z} + \cdots \thinspace .
+            \end{split}
         \end{equation}
 
     \subsection{Vector fields}
