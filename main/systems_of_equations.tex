@@ -15,7 +15,7 @@
             \vb{f}(\vb{x}_0) + \vb{J}(\vb{x}_0) (\vb{x} - \vb{x}_0) &\approx \vb{0} \\
             \vb{J}(\vb{x}_0) (\vb{x} - \vb{x}_0) & \approx - \vb{f}(\vb{x}_0) \label{eq:system_of_equations_approx} \thinspace ,
         \end{align}
-        which means that if we have an initial $\vb{x}_0$ (a guess for the solution), we can in principle calculate an improved guess $\vb{x}$. Newton's method thus goes as follows \cite{burden2010}:
+        which means that if we have an initial $\vb{x}_0$ (a guess for the solution), we can in principle calculate an improved guess $\vb{x}$. Newton's method thus goes as follows \cite{Burden2011}:
         \begin{enumerate}
             \item Choose an initial guess $\vb{x}_0$
             \item \label{en:newton:first} In the $(i+1)$-th iteration, solve (\ref{eq:system_of_equations_approx}) for $\Delta \vb{x}_{i+1} = \vb{x}_{i+1} - \vb{x}_i$.
@@ -31,7 +31,7 @@
         \end{enumerate}
 
     \subsection{Broyden's method}
-        Broyden's method \cite{burden2010, broyden1965} is a quasi-Newton method that eliminates the need to recompute the Jacobian matrix at every iteration step. In the $i+1$-th step of the iteration, we use an approximation for the Jacobian matrix, which we shall denote by $\vb{A}_i$:
+        Broyden's method \cite{Burden2011, broyden1965} is a quasi-Newton method that eliminates the need to recompute the Jacobian matrix at every iteration step. In the $i+1$-th step of the iteration, we use an approximation for the Jacobian matrix, which we shall denote by $\vb{A}_i$:
         \begin{equation}
             \vb{A}_i (\vb{x}_{i+1} - \vb{x}_i) = \vb{f}(\vb{x}_{i+1}) - \vb{f}(\vb{x}_i) \thinspace ,
         \end{equation}
@@ -47,7 +47,7 @@
         \begin{equation}
             \vb{A}_{i+1} = \vb{A}_i + \frac{\Delta \vb{f}_{i+1} - \vb{A}_i \Delta \vb{x}_{i+1}}{|| \Delta \vb{x}_{i+1} ||^2} \Delta \vb{x}_{i+1}^T \thinspace ,
         \end{equation}
-        which is of the form $(\vb{A} + \vb{x} \vb{y}^T)$, for $\vb{A}$ nonsingular and $\vb{y}^T \vb{A}^{-1} \vb{x} \neq -1$, such that we can use the Sherman-Morrison formula \cite{burden2010}
+        which is of the form $(\vb{A} + \vb{x} \vb{y}^T)$, for $\vb{A}$ nonsingular and $\vb{y}^T \vb{A}^{-1} \vb{x} \neq -1$, such that we can use the Sherman-Morrison formula \cite{Burden2011}
         \begin{equation}
             (\vb{A} + \vb{x} \vb{y}^T)^{-1} = \vb{A}^{-1} - \frac{\vb{A}^{-1} \vb{x} \vb{y}^T \vb{A}^{-1}}{1 + \vb{y}^T \vb{A}^{-1} \vb{x}} \thinspace ,
         \end{equation}
