@@ -1,18 +1,38 @@
-\section{Fields}
-    \subsection{Scalar fields}
+\section{Calculus}
+    \subsection{Scalar fields - multivariate functions}
         Let $f(\vb{x})$ be a real-valued scalar field (function):
         \begin{equation}
             f: \R^n \rightarrow \R: \vb{x} \mapsto f(\vb{x}) \thinspace .
         \end{equation}
 
-        The gradient of $f$ evaluated at $\vb{x}$, then is the vector
+        A partial derivative of $f$ along the $i$-th component is then defined as
+        \begin{equation}
+            \pdv{f(\vb{x})}{x_i} = \lim_{a \to 0} \qty( \frac{f(\vb{x} + a \vb{e}_i) - f(\vb{x})}{a} ) \thinspace .
+        \end{equation}
+
+        The gradient of $f$ evaluated at $\vb{x}$, then is
         \begin{equation}
             \grad{f(\vb{x})} \equiv \pdv{f(\vb{x})}{\vb{x}} \thinspace ,
         \end{equation}
-        where the components are calculated as
+        where the components are calculated as partial derivatives
         \begin{equation}
-            \Big( \grad{f(\vb{x})} \Big)_i = \pdv{f(\vb{x})}{x_i}
+            \Big( \grad{f(\vb{x})} \Big)_i = \pdv{f(\vb{x})}{x_i} \thinspace .
         \end{equation}
+
+        Furthermore, for the gradient of $f$ holds:
+        \begin{equation}
+            \lim_{h \to 0} \qty( \frac{f(\vb{x} + h \vb{a}) - f(\vb{x}) - h \grad{f(\vb{x})} \cdot \vb{a}}{h} ) = 0 \thinspace .
+        \end{equation}
+
+        The directional derivative of a function $f$ along a vector $\vb{a}$ is defined as
+        \begin{equation}
+            \grad_{\vb{a}} f(\vb{x}) = \lim_{h \to 0} \qty( \frac{f(\vb{x} + h \vb{a}) - f(\vb{x})}{h} )
+        \end{equation}
+        and can be calculated using
+        \begin{equation}
+            \grad_{\vb{a}} f(\vb{x}) = \grad{f(\vb{x})} \cdot \vb{a}
+        \end{equation}
+        for functions that are differentiable at $\vb{x}$. \\
 
         Some useful formulas concerning the derivative of scalar fields with respect to a vector are:
         \begin{align}
@@ -82,7 +102,7 @@
             \end{split}
         \end{equation}
 
-    \subsection{Vector fields}
+    \subsection{Vector fields - multivariate vector functions}
         Let $\vb{f}(\vb{x})$ be a vector-valued function, i.e. a vector field:
         \begin{equation}
             \vb{f}: \R^n \rightarrow \R^m: \vb{x} \mapsto \vb{f}(\vb{x}) \thinspace ,

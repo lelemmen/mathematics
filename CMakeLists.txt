@@ -16,7 +16,7 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/l
                         main/algebraic_structures.tex
                         main/algebras.tex
                         main/commutators.tex
-                        main/fields.tex
+                        main/calculus.tex
                         main/functions.tex
                         main/linear_maps.tex
                         main/matrix.tex
