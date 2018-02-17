@@ -16,11 +16,24 @@
 
         A point $\vb{b}$ is called a boundary point of $S$ if it is not interior nor exterior. The set of all boundary points of a set $S$ is called the boundary and is denoted by $\partial S$.
 
-    \subsection{Scalar fields - multivariate functions}
-        Let $f(\vb{x})$ be a real-valued scalar field (function):
+    \subsection{Limits and continuity}
+        Let $S$ be an open subset of $\R^n$, and let $\vb{f}$ be a function
         \begin{equation}
-            f: \R^n \rightarrow \R: \vb{x} \mapsto f(\vb{x}) \thinspace .
+            \vb{f}: S \rightarrow \R^m: \vb{x} \mapsto \vb{f}(\vb{x}) \thinspace .
         \end{equation}
+
+        The limit notation, in which $\vb{x}$ approaches the interior point $\vb{a}$ has two equivalent meanings:
+        \begin{equation}
+            \lim_{\vb{x} \to \vb{a}} \vb{f}(\vb{x}) = \vb{b} \iff \lim_{ ||\vb{x} - \vb{a}|| \to \vb{0}} ||\vb{f}(\vb{x}) - \vb{b}|| = 0 \thinspace .
+        \end{equation}
+        The function $\vb{f}$ is called continuous at $\vb{a}$ if
+        \begin{equation}
+            \lim_{\vb{x} \to \vb{a}} \vb{f}(\vb{x}) = \vb{f}(\vb{a}) \thinspace .
+        \end{equation}
+
+
+
+
 
         A partial derivative of $f$ along the $i$-th component is then defined as
         \begin{equation}
