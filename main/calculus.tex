@@ -1,4 +1,21 @@
-\section{Calculus}
+\section{Multivariate calculus}
+    In Apostol \cite{Apostol1969}, chapter 8, we can find a very nice mathematical summary of multivariate differential calculus. We'll start with multivariate functions, and subsequently discuss multivariate vector-valued functions.
+
+    \subsection{Elementary topology}
+        An open $n$-ball $\mathcal{B}(\vb{a}, \vb{r})$ is the set
+        \begin{equation}
+            \mathcal{B}(\vb{a}, \vb{r}) = \set{\vb{x} \in \R^n ; \thinspace \thinspace||\vb{x} - \vb{a}|| < \vb{r}} \thinspace .
+        \end{equation}
+        A point $\vb{a}$ is called an interior point of $S \subset \R^n$ if there exists an open $n$-ball such that \mbox{$\mathcal{B}(\vb{a}, \vb{r}) \subset S$}. \\
+
+        A set $S \subseteq \R^n$ is called open if every point inside it is an interior point of $S$. Examples are in 1D an open interval, and in 3D the sphere without boundary. \\
+
+        A neighborhood of a point $\vb{a}$ is an open set $S$ in which $\vb{a}$ lies. \\
+
+        A point $\vb{x}$ is called an exterior point of $S \subset \R^n$ if there exists an open $n$-ball that does not contain any points of $S$. \\
+
+        A point $\vb{b}$ is called a boundary point of $S$ if it is not interior nor exterior. The set of all boundary points of a set $S$ is called the boundary and is denoted by $\partial S$.
+
     \subsection{Scalar fields - multivariate functions}
         Let $f(\vb{x})$ be a real-valued scalar field (function):
         \begin{equation}
