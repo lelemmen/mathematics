@@ -19,8 +19,9 @@
     \subsection{Limits and continuity}
         Let $S$ be an open subset of $\R^n$, and let $\vb{f}$ be a function
         \begin{equation}
-            \vb{f}: S \rightarrow \R^m: \vb{x} \mapsto \vb{f}(\vb{x}) \thinspace .
+            \vb{f}: S \rightarrow \R^m: \vb{x} \mapsto \vb{f}(\vb{x}) \thinspace ,
         \end{equation}
+        in which we will designate vector-valued functions (i.e. $m \leq 1$) by a bold-face symbol. If we instead want to emphasize a scalar function (i.e. $m=1$), we will use an italic symbol. \\
 
         The limit notation, in which $\vb{x}$ approaches the interior point $\vb{a}$ has two equivalent meanings:
         \begin{equation}
@@ -31,8 +32,43 @@
             \lim_{\vb{x} \to \vb{a}} \vb{f}(\vb{x}) = \vb{f}(\vb{a}) \thinspace .
         \end{equation}
 
+    \subsection{Directional derivatives}
+        Let $f$ be a scalar function:
+        \begin{equation}
+            \vb{f}: S \rightarrow \R: \vb{x} \mapsto f(\vb{x}) \thinspace ,
+        \end{equation}
+        in which $S$ is an open subset of $\R^n$ and $\vb{y}$ is a vector in $\R^n$. Let $\vb{a}$ be an interior point of $S$. We then call
+        \begin{equation}
+            \lim_{h \to 0} \qty( \frac{f(\vb{a} + h\vb{y}) - f(\vb{a})}{h} ) = f'(\vb{a};\vb{y})
+        \end{equation}
+        the derivative of $f$ with respect to $\vb{y}$ at $\vb{a}$. \\
 
+        If
+        \begin{equation}
+            g(t) = f(\vb{a} + t \vb{y}) \thinspace ,
+        \end{equation}
+        then
+        \begin{equation}
+            g'(t) = f'(\vb{a} + t \vb{y}; \vb{y}) \thinspace .
+        \end{equation}
 
+        If $f(\vb{a} + t \vb{y})$ is differentiable for all $t \in \interval{0}{1}$, then by the mean value theorem we have:
+        \begin{equation}
+            \exists \theta \in \interval[open]{0}{1}: \qquad f(\vb{a} + \vb{y}) - f(\vb{a}) = f'(\vb{a} + \theta \vb{y}; \vb{y}) \thinspace .
+        \end{equation}
+
+        If $\vb{y}$ is a unit vector (i.e. $||\vb{y}|| = 1$), then we call $f'(\vb{a};\vb{y})$ a special name: the directional derivative of $f$ w.r.t. $\vb{y}$ in $\vb{a}$ and we assign a new symbol to it:
+        \begin{equation}
+            \grad_{\vb{y}} f(\vb{a}) = \lim_{h \to 0} \qty( \frac{f(\vb{a} + h\vb{y}) - f(\vb{a})}{h} ) = f'(\vb{a};\vb{y}) \thinspace ,
+        \end{equation}
+        which is equivalent with
+        \begin{equation}
+            \lim_{h \to 0} \qty( \frac{f(\vb{a} + h \vb{y}) - f(\vb{a}) - h \grad_{\vb{y}} f(\vb{a})}{h} ) = 0 \thinspace .
+        \end{equation}
+        The $i$-th partial derivative of $f$ in $\vb{a}$ is defined to be the directional derivative along $\vb{e}_i$. We define a new symbol
+        \begin{equation}
+            \pdv{f(\vb{a})}{x_i} = \grad_{\vb{e}_i} f(\vb{a}) = f'(\vb{a};\vb{e}_i) = \lim_{h \to 0} \qty( \frac{f(\vb{a} + h\vb{e}_i) - f(\vb{a})}{h} ) \thinspace .
+        \end{equation}
 
 
         A partial derivative of $f$ along the $i$-th component is then defined as
