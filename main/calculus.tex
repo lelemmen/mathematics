@@ -16,7 +16,7 @@
 
         A point $\vb{b}$ is called a boundary point of $S$ if it is not interior nor exterior. The set of all boundary points of a set $S$ is called the boundary and is denoted by $\partial S$.
 
-    \subsection{Limits and continuity}
+    \subsection{Limits and continuity for scalar functions}
         Let $S$ be an open subset of $\R^n$, and let $\vb{f}$ be a function
         \begin{equation}
             \vb{f}: S \rightarrow \R^m: \vb{x} \mapsto \vb{f}(\vb{x}) \thinspace ,
@@ -32,7 +32,7 @@
             \lim_{\vb{x} \to \vb{a}} \vb{f}(\vb{x}) = \vb{f}(\vb{a}) \thinspace .
         \end{equation}
 
-    \subsection{Directional derivatives}
+    \subsection{Directional derivatives for scalar functions}
         Let $f$ be a scalar function:
         \begin{equation}
             \vb{f}: S \rightarrow \R: \vb{x} \mapsto f(\vb{x}) \thinspace ,
@@ -70,24 +70,43 @@
             \pdv{f(\vb{a})}{x_i} = \grad_{\vb{e}_i} f(\vb{a}) = f'(\vb{a};\vb{e}_i) = \lim_{h \to 0} \qty( \frac{f(\vb{a} + h\vb{e}_i) - f(\vb{a})}{h} ) \thinspace .
         \end{equation}
 
-
-        A partial derivative of $f$ along the $i$-th component is then defined as
+    \subsection{The total derivative for scalar functions}
+        Let $S$ be an open subset of $\R^n$ and $\vb{a}$, such that we define the scalar function $f$:
         \begin{equation}
-            \pdv{f(\vb{x})}{x_i} = \lim_{a \to 0} \qty( \frac{f(\vb{x} + a \vb{e}_i) - f(\vb{x})}{a} ) \thinspace .
+            \vb{f}: S \rightarrow \R: \vb{x} \mapsto f(\vb{x}) \thinspace ,
+        \end{equation}
+        Let $\vb{a}$ be an interior point of $S$, and let's choose an $\vb{r}$ such that the open $n$-ball is contained by $S$:
+        \begin{equation}
+            \mathcal{B}(\vb{a},\vb{r}) \subseteq S \thinspace .
+        \end{equation}
+        Now let's choose a $\vb{v}$ with $||\vb{v}|| < ||\vb{r}||$ such that
+        \begin{equation}
+            \vb{a} + \vb{v} \in \mathcal{B}(\vb{a},\vb{r}) \thinspace .
+        \end{equation}
+        These are all the ingredients we need to define differentiability. We call the function $f$ differentiable at $\vb{a}$ if there exists a linear transformation $\vb{T}_{\vb{a}}$
+        \begin{equation}
+            \vb{T}_{\vb{a}}: \R^n \to \R
+        \end{equation}
+        such that $f$ admits a first-order Taylor formula:
+        \begin{equation}
+            f(\vb{a} + \vb{v}) = f(\vb{a}) + \vb{T}_{\vb{a}}(\vb{v}) + ||\vb{v}|| E(\vb{a},\vb{\vb{v}}) \thinspace ,
+        \end{equation}
+        in which $E(\vb{a},\vb{\vb{v}})$ is a scalar function with the behaviour that $E(\vb{a},\vb{\vb{v}}) \to 0$ if $||\vb{v}|| \to 0$. We call this linear map the total derivative and we can equivalently write:
+        \begin{equation}
+            \lim_{h \to 0} \qty( \frac{f(\vb{a} + h \vb{y}) - f(\vb{a}) - h \vb{T}_{\vb{a}}(\vb{y})}{h} ) = 0 \thinspace .
         \end{equation}
 
-        The gradient of $f$ evaluated at $\vb{x}$, then is
+        The total derivative is related to the directional derivative:
         \begin{equation}
-            \grad{f(\vb{x})} \equiv \pdv{f(\vb{x})}{\vb{x}} \thinspace ,
+            \vb{T}_{\vb{a}}(\vb{y}) = f'(\vb{a};\vb{y}) = \grad_{\vb{y}} f(\vb{a}) = \lim_{h \to 0} \qty( \frac{f(\vb{a} + h\vb{y}) - f(\vb{a})}{h} ) \thinspace ,
         \end{equation}
-        where the components are calculated as partial derivatives
+        and the following useful formula holds:
         \begin{equation}
-            \Big( \grad{f(\vb{x})} \Big)_i = \pdv{f(\vb{x})}{x_i} \thinspace .
+            \vb{T}_{\vb{a}} (\vb{y}) = \grad{f(\vb{a})} \cdot \vb{y} \thinspace ,
         \end{equation}
-
-        Furthermore, for the gradient of $f$ holds:
+        in which we have introduced the gradient of $f$ at the point $\vb{a}$. This is the vector of partial derivatives:
         \begin{equation}
-            \lim_{h \to 0} \qty( \frac{f(\vb{x} + h \vb{a}) - f(\vb{x}) - h \grad{f(\vb{x})} \cdot \vb{a}}{h} ) = 0 \thinspace .
+            \Big( \grad{f(\vb{x})} \Big)_i \equiv \Big( \pdv{f}{\vb{x}} \Big)_i = \pdv{f(\vb{x})}{x_i} \thinspace .
         \end{equation}
 
         The directional derivative of a function $f$ along a vector $\vb{a}$ is defined as
@@ -102,13 +121,14 @@
 
         Some useful formulas concerning the derivative of scalar fields with respect to a vector are:
         \begin{align}
-            & \pdv{\vb{x}} (\vb{x}^\text{T} \vb{y}) = \vb{y} \\
-            & \pdv{\vb{x}} (\vb{x}^\text{T} \vb{x}) = 2 \vb{x} \\
-            & \pdv{\vb{x}} (\vb{x}^\text{T} \vb{A} \vb{y}) = \vb{A} \vb{y} \\
-            & \pdv{\vb{x}} (\vb{y}^\text{T} \vb{A} \vb{x}) = \vb{A}^\text{T} \vb{y} \\
-            & \pdv{\vb{x}} (\vb{x}^\text{T} \vb{A} \vb{x}) = (\vb{A} + \vb{A}^\text{T}) \vb{x} \thinspace .
+            & \pdv{\vb{x}} (\vb{x} \cdot \vb{y}) = \vb{y} \\
+            & \pdv{\vb{x}} (\vb{x} \cdot \vb{x}) = 2 \vb{x} \\
+            & \pdv{\vb{x}} (\vb{x} \cdot (\vb{A} \vb{y})) = \vb{A} \vb{y} \\
+            & \pdv{\vb{x}} (\vb{y} \cdot (\vb{A} \vb{x})) = \vb{A}^\text{T} \vb{y} \\
+            & \pdv{\vb{x}} (\vb{x} \cdot (\vb{A} \vb{x})) = (\vb{A} + \vb{A}^\text{T}) \vb{x} \thinspace .
         \end{align}
 
+    \subsection{The Hessian for scalar functions}
         We can also calculate second-order (and subsequently higher-order) derivatives of the scalar function with respect to the components of $\vb{x}$. This second-order derivative is a symmetric matrix for twice-differentiable functions and is called the Hessian:
         \begin{equation}
             \vb{H}(\vb{x})_{ij} = \pdv{f(\vb{x})}{x_i}{x_j} \thinspace .
@@ -116,8 +136,8 @@
 
         Using the previously defined gradient and Hessian, we can write the Taylor expansion of the function $f$ around the point $\vb{x}_0$ as
         \begin{align}
-            f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0)^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0)^\text{T} \thinspace \vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0) + \cdots \label{eq:taylor_matrix} \\
-            &= f(\vb{x}_0) + \Delta \vb{x}^\text{T} \thinspace \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \thinspace \vb{H}(\vb{x}_0) \thinspace \Delta \vb{x} + \cdots \thinspace ,
+            f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0) \cdot \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0) \cdot  (\vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0)) + \cdots \label{eq:taylor_matrix} \\
+            &= f(\vb{x}_0) + \Delta \vb{x} \cdot \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \cdot (\vb{H}(\vb{x}_0) \thinspace \Delta \vb{x}) + \cdots \thinspace ,
         \end{align}
         in which
         \begin{equation}
@@ -139,10 +159,6 @@
             \begin{pmatrix}
                 \pdv{f(\vb{y}, \vb{z})}{\vb{y}} \\
                 \pdv{f(\vb{y}, \vb{z})}{\vb{z}}
-            \end{pmatrix} =
-            \begin{pmatrix}
-                \grad_{\vb{y}}{f(\vb{y}, \vb{z})} \\
-                \grad_{\vb{z}}{f(\vb{y}, \vb{z})}
             \end{pmatrix}
             \thinspace ,
         \end{equation}
@@ -162,25 +178,45 @@
         This means that an expression for the Taylor expansion of $f$ around $(\vb{y}_0, \vb{z}_0)$ becomes
         \begin{equation}
             \begin{split}
-                f(\vb{y}, \vb{z}) = &f(\vb{y}_0, \vb{z}_0) + \Delta \vb{y}^\text{T} \thinspace \grad_{\vb{y}}{f(\vb{y}_0, \vb{z}_0)} + \Delta \vb{z}^\text{T} \thinspace \grad_{\vb{z}}{f(\vb{y}_0, \vb{z}_0)} \\
-                &+ \frac{1}{2!} \Delta \vb{y}^\text{T} \thinspace \vb{H}_{\vb{y} \vb{y}}(\vb{y}_0, \vb{z}_0) \Delta \vb{y} + \frac{1}{2!} \Delta \vb{y}^\text{T} \thinspace \vb{H}_{\vb{y} \vb{z}}(\vb{y}_0, \vb{z}_0) \Delta \vb{z} \\
-                &+ \frac{1}{2!} \Delta \vb{z}^\text{T} \thinspace \vb{H}_{\vb{z} \vb{y}}(\vb{y}_0, \vb{z}_0) \Delta \vb{y} + \frac{1}{2!} \Delta \vb{z}^\text{T} \thinspace \vb{H}_{\vb{z} \vb{z}}(\vb{y}_0, \vb{z}_0) \Delta \vb{z} + \cdots \thinspace .
+                f(\vb{y}, \vb{z}) = &f(\vb{y}_0, \vb{z}_0) + \Delta \vb{y} \cdot \pdv{\vb{y}} f(\vb{y}_0, \vb{z}_0) + \Delta \vb{z} \cdot \pdv{\vb{z}} f(\vb{y}_0, \vb{z}_0) \\
+                &+ \frac{1}{2!} \Delta \vb{y} \cdot (\vb{H}_{\vb{y} \vb{y}}(\vb{y}_0, \vb{z}_0) \Delta \vb{y}) + \frac{1}{2!} \Delta \vb{y} \cdot (\vb{H}_{\vb{y} \vb{z}}(\vb{y}_0, \vb{z}_0) \Delta \vb{z}) \\
+                &+ \frac{1}{2!} \Delta \vb{z} \cdot (\vb{H}_{\vb{z} \vb{y}}(\vb{y}_0, \vb{z}_0) \Delta \vb{y}) + \frac{1}{2!} \Delta \vb{z} \cdot (\vb{H}_{\vb{z} \vb{z}}(\vb{y}_0, \vb{z}_0) \Delta \vb{z}) + \cdots \thinspace .
             \end{split}
         \end{equation}
 
     \subsection{Vector fields - multivariate vector functions}
         Let $\vb{f}(\vb{x})$ be a vector-valued function, i.e. a vector field:
         \begin{equation}
-            \vb{f}: \R^n \rightarrow \R^m: \vb{x} \mapsto \vb{f}(\vb{x}) \thinspace ,
+            \vb{f}: S \rightarrow \R^m: \vb{x} \mapsto \vb{f}(\vb{x}) \thinspace ,
         \end{equation}
-        in which we can write
+        in which $S$ is an open subset of $\R^n$. We will also write:
         \begin{align} \label{eq:vector_field}
             &\vb{f}(\vb{x}) = (f_1(\vb{x}), f_2(\vb{x}), \dots, f_m(\vb{x})) \\
             &\forall f_i: \R^n \rightarrow \R: \vb{x} \mapsto f_i(\vb{x}) \thinspace ,
         \end{align}
-        in which the functions $f_i$ are sometimes called coordinate functions \cite{Burden2011}. In a sense, the vector field associates to every vector $\vb{x} \in \R^n$ a vector $\vb{f}(\vb{x}) \in \R^m$. \\
+        in which the functions $f_i$ are sometimes called coordinate functions \cite{Burden2011}. In a sense, the vector field associates to every vector $\vb{x} \in \R^n$ a vector $\vb{f}(\vb{x}) \in \R^m$. Since this is a generaliation from $\R$ to $\R^n$, we can easily generalize the previous formulas for scalar functions to vector functions. \\
 
-        The first-order derivative of a vector field is the matrix
+        We can now write
+        \begin{equation}
+            \vb{f}(\vb{a}; \vb{y}) = \lim_{h \to 0} \qty( \frac{\vb{f}(\vb{a} + h \vb{y}) - \vb{f}(\vb{a})}{h} ) \thinspace .
+        \end{equation}
+        The vector function $\vb{f}$ is now called differentiable at a point $\vb{a}$ is there exists a linear map called the total derivative of $f$ at $\vb{a}$
+        \begin{equation}
+            \vb{T}_{\vb{a}}: \R^n \to \R^n \thinspace ,
+        \end{equation}
+        such that $\vb{f}$ admits a Taylor formula:
+        \begin{equation}
+            \vb{f}(\vb{a} + \vb{v}) + \vb{T}_{\vb{a}}(\vb{v}) + ||\vb{v}|| \vb{E}(\vb{a}, \vb{v}) \thinspace ,
+        \end{equation}
+        in which $\vb{E}(\vb{a}, \vb{v}) \to \vb{0}$ as $||\vb{v}|| \to \vb{0}$. \\
+
+        We can write this total derivative also as
+        \begin{equation}
+            \vb{T}_{\vb{a}} (\vb{y}) = \vb{f}'(\vb{a}, \vb{y}) = \sum_i^n \grad{f_i(\vb{a})} \cdot \vb{y} \vb{e}_i = \vb{J}(\vb{a}) \vb{y} \thinspace ,
+        \end{equation}
+        which leads to the conclusion that the matrix $\vb{J}$, which we will call the Jacobian matrix, is the matrix representation of the total derivative for vector fields. \\
+
+        We can also say that first-order derivative of a vector field is the matrix
         \begin{equation}
             \vb{J} \equiv \pdv{\vb{f}}{\vb{x}} \thinspace ,
         \end{equation}
