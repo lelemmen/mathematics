@@ -148,9 +148,13 @@
 
                 Since in iteration $k$, we have already calculated the upper-left $\dim{V_{k-1}} \times \dim{V_{k-1}}$ block of $\vb{M}_k$, we actually only require to calculate
                 \begin{equation}
-                    M_{ik} = \vb{v}_i^{\text{T}} \vb{v}_j^{\vb{A}} = M_{ki}
+                    M_{ik} = \vb{v}_i^{\text{T}} \vb{v}_k^{\vb{A}} = M_{ki}
                 \end{equation}
-                for $i = 1, \cdots, k$.
+                for $i = 1, \dots, k$, which is the same as calculating the $k$-th row of $\vb{M}$:
+                \begin{align}
+                    \vb{m}_k &= \vb{V}^{\text{T}} (\vb{A} \vb{v}_k) \\
+                    &= \vb{V}^{\text{T}} \vb{v}^{\vb{A}}_k \thinspace .
+                \end{align}
 
             \item Solve the subspace eigenvalue problem:
                 \begin{equation}
