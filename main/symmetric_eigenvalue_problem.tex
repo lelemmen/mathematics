@@ -66,6 +66,77 @@
         Unfortunately, this is an underdetermined system of equations.
 
     \subsection{The Davidson diagonalization method}
+        As proposed initially by Davidson in 1975 \cite{davidson1975}, his diagonalization method applied to any symmetry, diagonally dominant matrix of dimension $N$. It is a method to solve the associated eigenvalue problem for this matrix (which can have insanely large dimensions - large enough to be stored in the modern RAM-memory of a computer), finding its lowest eigenvalue and associated eigenvector. \\
+
+        In summary, the algorithm takes an initial guess for the lowest-eigenvalue eigenvector and produces new estimates by solving the diagonalization in an ever increasing subspace of previous estimates. Starting from that initial guess, the algorithm goes as follows.
+        \begin{enumerate}
+            \item Let $\vb{t}$ be an initial guess vector. Calculate $\vb{v}_1$, being a new subspace vector, as
+                \begin{equation}
+                    \vb{v}_1 = \frac{\vb{t}}{|| \vb{t} ||} \thinspace .
+                \end{equation}
+
+            \item Calculate the matrix-vector product
+                \begin{equation}
+                    \vb{v}^{\vb{A}}_1 = \vb{A} \vb{v}_1 \thinspace .
+                \end{equation}
+
+            \item Expand the current subspace $\vb{V}$ (initially it is empty) to
+                \begin{equation}
+                    \vb{V}_1 = \begin{pmatrix} \vb{v}_1 \end{pmatrix}
+                \end{equation}
+                and expand (again: initially $\vb{V}^{\vb{A}}$ is empty)
+                \begin{equation}
+                    \vb{V}^{\vb{A}}_1 = \begin{pmatrix} \vb{v}^{\vb{A}}_1 \end{pmatrix} \thinspace .
+                \end{equation}
+
+            \item Calculate the Rayleigh quotient
+                \begin{align}
+                    \theta &= \vb{v}^{\text{T}}_1 \vb{A} \vb{v}_1 \\
+                    &= \vb{v}^{\text{T}}_1 \vb{v}^{\vb{A}}_1 \thinspace .
+                \end{align}
+
+            \item Calculate the the associated residual vector
+                \begin{equation}
+                    \vb{r}_1 = \vb{v}^{\vb{A}}_1 - \theta \thinspace \vb{v}_1 \thinspace .
+                \end{equation}
+
+            \item If the norm of the residual vector is lower than a specified threshold, the algorithm has already converged (but let's not get our hopes up: this doesn't happen) and we have found the lowest eigenpair of $\vb{A}$, being $(\theta, \vb{v}_1^{\vb{A}})$.
+
+            \item Approximately solve the residue correction equation. This is where the 'Davidson' algorithm got his name. By using a diagonal approximation $\vb{A}'$ of the matrix $\vb{A}$, we get a clear and easy expression for a new $\vb{t}$-vector
+                \begin{equation}
+                    \vb{t} = (\theta \thinspace \vb{I} - \vb{A}')^{-1} \thinspace \vb{r} \thinspace ,
+                \end{equation}
+                or, written coefficient-wise:
+                \begin{equation}
+                    t_i = \frac{r_i}{\theta - A_{ii}} \thinspace .
+                \end{equation}
+                Davidson originally suggested that if $|\theta - A_{ii}|$ is smaller than a threshold, the components $t_i$ are set to zero.
+        \end{enumerate}
+
+        We are now in the position to phrase the algorithm for all iterations $k>1$.
+
+        \begin{enumerate}
+            \item Project $\vb{t}$ onto the orthogonal complement of $\vb{V}_{k-1}$:
+                \begin{align}
+                    \vb{t}^{\perp} &= (\vb{I} - \vb{V}_{k-1} \vb{V}_{k-1}^{\text{T}}) \vb{t}
+                    &= \vb{t} - \sum_i^{\dim{V_{k-1}}} (\vb{v}_i^{\text{T}} \vb{t}) \vb{v}_i
+                \end{align}
+
+            \item Calculate the subspace matrix
+                \begin{equation}
+                    \vb{M} = \vb{V}^{\text{T}}_1 \vb{A} \vb{V}_1 \thinspace ,
+                \end{equation}
+        \end{enumerate}
+
+
+
+
+
+
+
+
+
+    \subsection{The Davidson diagonalization method}
         The Davidson diagonalization method was devised by Davidson in 1975 \cite{davidson1975} for symmetric, diagonally dominant eigenvalue problems. Since the problem is diagonally dominant, a good estimate of one eigenvector would be
         \begin{equation}
             \vb{x}_1 = \vb{e}_1 \thinspace
