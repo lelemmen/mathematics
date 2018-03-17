@@ -183,3 +183,13 @@
                 \end{equation}
                 Davidson originally suggested that if $|\theta - A_{ii}|$ is smaller than a threshold, the components $t_i$ are set to zero.
         \end{enumerate}
+
+        In case the dimension of the subspace matrix is getting too big (bigger than a predetermined maximum subspace dimension $D$ of $10$-$15$), the algorithm should restart:
+        \begin{itemize}
+            \item Pulay apparently wrote that taking the two latest ones is enough to prevent convergence instabilities.
+            \item We can take a linear combination
+                \begin{align}
+                    \vb{t} &= \vb{V}_k \vb{s}  \\
+                    &= \sum_i^D s_i \vb{v}_i \thinspace .
+                \end{align}
+        \end{itemize}
