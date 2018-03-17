@@ -75,12 +75,12 @@
                     \vb{v}_1 = \frac{\vb{t}}{|| \vb{t} ||} \thinspace .
                 \end{equation}
 
-            \item Calculate the matrix-vector product
+            \item Calculate the (expensive) matrix-vector product:
                 \begin{equation}
                     \vb{v}^{\vb{A}}_1 = \vb{A} \vb{v}_1 \thinspace .
                 \end{equation}
 
-            \item Expand the current subspace $\vb{V}$ (initially it is empty) to
+            \item Expand the subspace $\vb{V}$ (initially it is empty) to
                 \begin{equation}
                     \vb{V}_1 = \begin{pmatrix} \vb{v}_1 \end{pmatrix}
                 \end{equation}
@@ -89,18 +89,18 @@
                     \vb{V}^{\vb{A}}_1 = \begin{pmatrix} \vb{v}^{\vb{A}}_1 \end{pmatrix} \thinspace .
                 \end{equation}
 
-            \item Calculate the Rayleigh quotient
+            \item Calculate the Rayleigh quotient:
                 \begin{align}
                     \theta &= \vb{v}^{\text{T}}_1 \vb{A} \vb{v}_1 \\
                     &= \vb{v}^{\text{T}}_1 \vb{v}^{\vb{A}}_1 \thinspace .
                 \end{align}
 
-            \item Calculate the the associated residual vector
+            \item Calculate the the associated residual vector:
                 \begin{equation}
                     \vb{r}_1 = \vb{v}^{\vb{A}}_1 - \theta \thinspace \vb{v}_1 \thinspace .
                 \end{equation}
 
-            \item If the norm of the residual vector is lower than a specified threshold, the algorithm has already converged (but let's not get our hopes up: this doesn't happen) and we have found the lowest eigenpair of $\vb{A}$, being $(\theta, \vb{v}_1^{\vb{A}})$.
+            \item If the norm of the residual vector is lower than a specified threshold, the algorithm has already converged (but let's not get our hopes up: this doesn't happen) and we have found the lowest eigenpair of $\vb{A}$, being $(\theta, \vb{v}_1)$.
 
             \item Approximately solve the residue correction equation. This is where the 'Davidson' algorithm got his name. By using a diagonal approximation $\vb{A}'$ of the matrix $\vb{A}$, we get a clear and easy expression for a new $\vb{t}$-vector
                 \begin{equation}
@@ -118,133 +118,68 @@
         \begin{enumerate}
             \item Project $\vb{t}$ onto the orthogonal complement of $\vb{V}_{k-1}$:
                 \begin{align}
-                    \vb{t}^{\perp} &= (\vb{I} - \vb{V}_{k-1} \vb{V}_{k-1}^{\text{T}}) \vb{t}
+                    \vb{t}^{\perp} &= (\vb{I} - \vb{V}_{k-1} \vb{V}_{k-1}^{\text{T}}) \vb{t} \\
                     &= \vb{t} - \sum_i^{\dim{V_{k-1}}} (\vb{v}_i^{\text{T}} \vb{t}) \vb{v}_i
                 \end{align}
 
-            \item Calculate the subspace matrix
+            \item Calculate the new subspace vector:
                 \begin{equation}
-                    \vb{M} = \vb{V}^{\text{T}}_1 \vb{A} \vb{V}_1 \thinspace ,
+                    \vb{v}_k = \frac{\vb{t}^\perp}{|| \vb{t}^\perp ||} \thinspace .
                 \end{equation}
-        \end{enumerate}
 
+            \item Calculate the (expensive) matrix-vector product:
+                \begin{equation}
+                    \vb{v}^{\vb{A}}_k = \vb{A} \vb{v}_k \thinspace .
+                \end{equation}
 
+            \item Expand the subspace $\vb{V}$ to
+                \begin{equation}
+                    \vb{V}_k = \begin{pmatrix} \vb{V}_{k-1} & \vb{v}_k \end{pmatrix}
+                \end{equation}
+                and expand
+                \begin{equation}
+                    \vb{V}^{\vb{A}}_k = \begin{pmatrix} \vb{V}^{\vb{A}}_{k-1} & \vb{v}_k \end{pmatrix} \thinspace .
+                \end{equation}
 
+            \item Calculate the subspace matrix:
+                \begin{equation}
+                    \vb{M}_k = \vb{V}^{\text{T}}_k \vb{A} \vb{V}_k \thinspace .
+                \end{equation}
 
+                Since in iteration $k$, we have already calculated the upper-left $\dim{V_{k-1}} \times \dim{V_{k-1}}$ block of $\vb{M}_k$, we actually only require to calculate
+                \begin{equation}
+                    M_{ik} = \vb{v}_i^{\text{T}} \vb{v}_j^{\vb{A}} = M_{ki}
+                \end{equation}
+                for $i = 1, \cdots, k$.
 
+            \item Solve the subspace eigenvalue problem:
+                \begin{equation}
+                    \vb{M}_k \vb{s} = \theta \thinspace \vb{s} \thinspace .
+                \end{equation}
 
+            \item Calculate the new residual vector by first calculating
+                \begin{equation}
+                    \vb{u} = \vb{V}_k \vb{s}
+                \end{equation}
+                and
+                \begin{equation}
+                    \vb{u}^{\vb{A}} = \vb{V}_k^{\vb{A}} \vb{s} \thinspace ,
+                \end{equation}
+                and subsequently calculation the actual residual vector
+                \begin{align}
+                    \vb{r} &= (\vb{A} - \theta \thinspace \vb{I}) \vb{V}_k \vb{s} \\
+                    &= \vb{u}^{\vb{A}} - \theta \thinspace \vb{u} \thinspace .
+                \end{align}
 
+            \item If the norm of the residual vector is lower than a specified threshold, the algorithm has converged and we have found the lowest eigenpair of $\vb{A}$, being $(\theta, \vb{u}_k^{\vb{A}})$.
 
-
-    \subsection{The Davidson diagonalization method}
-        The Davidson diagonalization method was devised by Davidson in 1975 \cite{davidson1975} for symmetric, diagonally dominant eigenvalue problems. Since the problem is diagonally dominant, a good estimate of one eigenvector would be
-        \begin{equation}
-            \vb{x}_1 = \vb{e}_1 \thinspace
-        \end{equation}
-        with the associated Rayleigh quotient
-        \begin{equation}
-            \lambda_1 = \vb{x}_1^\text{T} \vb{A} \vb{x}_1
-        \end{equation}
-        and the residual vector
-        \begin{equation}
-            \vb{r}_1 = \vb{A} \vb{x}_1 - \lambda_1 \vb{x}_1 \thinspace .
-        \end{equation}
-        In Davidson's algorithm, the term in $\delta\lambda$ in equation (\ref{eq:residual_vector_equation}) is ignored, and the matrix $\vb{A}$ is replaced by its diagonal $\vb{A}'$, leading to the residual correction equation\footnote{In many other texts, this step would be called the \emph{preconditioning step}: element-wise division of $\vb{r}_1$ by the corresponding diagonal element of $\qty(\vb{A}' - \lambda_1 \vb{I}_{(n)})$.}
-        \begin{equation}
-            \qty(\vb{A}' - \lambda_1 \vb{I}_{(n)}) \boldsymbol{\delta} \vb{v}_1 = - \vb{r}_1 \thinspace ,
-        \end{equation}
-        that is easily solved since, on first sight $\qty(\vb{A}' - \lambda_1 \vb{I}_{(n)})$ is trivially easy to invert as it is a diagonal matrix. Upon inspection, however, we find that
-        \begin{equation}
-            \qty(\vb{A}' - \lambda_1 \vb{I}_{(n)})_{11} = 0 \thinspace ,
-        \end{equation}
-        leading to a zero first column. The solution to this problem is to set the components of $\boldsymbol{\delta} \vb{v}_1$ to zero if the denominator tends to zero as well.\\
-
-        According to section \ref{sec:ritz}, we can find optimal approximates to the eigensystem of $\vb{A}$ by employing subspaces. Let's take
-        \begin{equation}
-            \vb{V}_2 = \begin{pmatrix} \vb{e}_1 & \vb{v}_2 \end{pmatrix} \thinspace ,
-        \end{equation}
-        such that $C(\vb{V}_2)$ is a two-dimensional subspace. In this subspace, we can compute the improved eigenpair $\qty{\lambda_2, \vb{x}_2}$ by diagonalizing $\vb{V}_{2}^\text{T} \vb{A} \vb{V}_2$
-        \begin{equation}
-            (\vb{V}_2^\text{T} \vb{A} \vb{V}_2) \vb{t}_2 = \theta_2 \vb{t}_2 \thinspace ,
-        \end{equation}
-        such that the Ritz pair is given by
-        \begin{align}
-            &\lambda_2 = \theta_2 \\
-            &\vb{x}_2 = \vb{V}_2 \vb{t}_2
-        \end{align}
-        Now we can calculate a new residue
-        \begin{equation}
-            \vb{r}_2 = \vb{A} \vb{x}_2 - \lambda_2 \vb{x}_2
-        \end{equation}
-        and iterate until the norm of the residual vector becomes smaller than some predefined threshold. \\
-
-        The final question now is how to determine $\vb{v}_2$, i.e. the vector that expands the subspace
-        \begin{equation}
-            C(\vb{V}_1 = (\vb{e}_1)) \longrightarrow C(\vb{V}_2) \thinspace .
-        \end{equation}
-        As $\boldsymbol{\delta} \vb{v}_1$ is the solution to the residual correction equation, it helps us in how to expand the subspace. Since $\boldsymbol{\delta} \vb{v}_1$ is not necessarily orthogonal to $\vb{x}_1$, let's project out any "old" information, and subsequently normalize:
-        \begin{align}
-            & \vb{s}_2 = (\vb{I}_{(n)} - \vb{V}_1 \vb{V}_1^T) \boldsymbol{\delta} \vb{v}_1 \\
-            & \vb{v}_2 = \frac{\vb{s}_2}{||\vb{s}_2||} \thinspace ,
-        \end{align}
-        after which we can expand
-        \begin{equation}
-            \vb{V}_2 = \begin{pmatrix} \vb{e}_1 & \vb{v}_2 \end{pmatrix} \thinspace ,
-        \end{equation}
-        with the associated expanded subspace $C(\vb{V}_2)$.
-
-    \subsection{The Davidson-Liu diagonalization method}
-        As a generalization of the Davidson method, B. Liu \cite{Liu1978a} proposed the following method. Suppose we are looking for $r$ smallest roots of interest of the symmetric eigenvalue problem.
-        \begin{enumerate}
-            \item Start with a set of $l$ orthonormalized guess vectors
-            \begin{equation}
-                \vb{V} = \begin{pmatrix} \vb{v}_1 & \vb{v}_2 & \cdots & \vb{v}_l \end{pmatrix} \thinspace ,
-            \end{equation}
-            spanning an $l$-dimensional subspace $C(\vb{V})$. As the matrix $\vb{A}$ is diagonally dominant, good initial guesses are the corresponding vectors of the standard basis.
-
-            \item Construct the subspace matrix
-            \begin{equation}
-                S_{ij} = \vb{v}_i^\text{T} \vb{A} \vb{v}_j \qquad \qquad \vb{S} = \vb{V}^\text{T} \vb{A} \vb{V} \thinspace ,
-            \end{equation}
-            which is an $l \times l$-matrix.
-
-            \item Diagonalize that subspace matrix, finding the $r$ smallest roots of interest:
-            \begin{equation}
-                \vb{S} \vb{z}^k = \lambda^k \vb{z}^k \qquad \qquad k=1,\dots,r \leq l
-            \end{equation}
-            Collecting the eigenvectors of the subspace matrix $\vb{S}$ as columns in a matrix $\vb{Z}$, and the corresponding eigenvalues as the diagonal elements of a matrix $\boldsymbol{\Lambda}$, we can equivalently write
-            \begin{equation}
-                \vb{Z}^\text{T} \vb{S} \vb{A} = \boldsymbol{\Lambda} \thinspace .
-            \end{equation}
-
-            \item From the eigenvectors $\vb{z}^k$, we can construct current estimates to the symmetric eigenvalue problem:
-            \begin{equation}
-                \vb{x}^k = \sum_{i=1}^l \alpha_i^k \vb{v}_i \qquad \qquad \vb{X} = \vb{V} \vb{Z} \thinspace ,
-            \end{equation}
-            where $\vb{X}$'s columns is populated by the the $r$ current estimates.
-
-            \item Calculate the residual vectors
-            \begin{equation}
-                \vb{r}^k = (\vb{A} - \lambda^k \vb{I}_{(n)}) \vb{x}^k
-            \end{equation}
-            and the correction vectors
-            \begin{equation}
-                \delta^k_i = (\lambda^k - A_{ii})^{-1} r_i^k \thinspace .
-            \end{equation}
-            and normalize the correction vectors
-            \begin{equation}
-                \boldsymbol{\delta}^k := \frac{\boldsymbol{\delta}^k}{||\boldsymbol{\delta}^k||}
-            \end{equation}
-
-            \item Expand the subspace $C(\vb{V})$ with the orthonormalized correction vectors. First, project $\boldsymbol{\delta}^k$ on the orthogonal complement of $C(\vb{V})$:
-            \begin{equation}
-                \vb{q} = (\vb{I}_{(n)} - \vb{V} \vb{V}^\text{T}) \boldsymbol{\delta}^k \thinspace ,
-            \end{equation}
-            then calculate the norm $|| \vb{q} ||$ and if it is larger than a certain threshold (say $10^{-3}$), extend the current subspace $C(\vb{V})$ with the orthonormalized correction vector:
-            \begin{align}
-                & \vb{v}' = \frac{\vb{q}}{|| \vb{q} ||} \\
-                & \vb{V} := \qty(\begin{array}{c|c} \vb{V} & \vb{v}' \end{array}) \thinspace .
-            \end{align}
-
-            \item Convergence is achieved when the norm of every residual vector is smaller than a predetermined tolerance.
+            \item Approximately solve the residue correction equation:
+                \begin{equation}
+                    \vb{t} = (\theta \thinspace \vb{I} - \vb{A}')^{-1} \vb{r} \thinspace ,
+                \end{equation}
+                or, written coefficient-wise:
+                \begin{equation}
+                    t_i = \frac{r_i}{\theta - A_{ii}} \thinspace .
+                \end{equation}
+                Davidson originally suggested that if $|\theta - A_{ii}|$ is smaller than a threshold, the components $t_i$ are set to zero.
         \end{enumerate}
