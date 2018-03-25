@@ -190,10 +190,10 @@
 
         In case the dimension of the subspace matrix is getting too big (bigger than a predetermined maximum subspace dimension $D$ of $10$-$15$), the algorithm should restart:
         \begin{itemize}
-            \item Pulay apparently wrote that taking the two latest ones is enough to prevent convergence instabilities.
-            \item We can take a linear combination
-                \begin{align}
-                    \vb{t} &= \vb{V}_k \vb{s}  \\
-                    &= \sum_i^D s_i \vb{v}_i \thinspace .
-                \end{align}
+            \item Pulay wrote that taking the two latest ones is enough to prevent convergence instabilities.
+            \item We can therefore take 2 linear combinations
+                \begin{equation}
+                    \vb{v}^{'(j)} = \vb{V}_k \vb{s}^{(j)} \thinspace ,
+                \end{equation}
+                in which $\vb{V}_k$ is the current subspace, $(j)$ is $1$ or $2$ and $\vb{s}^{(j)}$ is either the lowest or second lowest eigenvector of the subspace matrix $\vb{M}$.
         \end{itemize}
