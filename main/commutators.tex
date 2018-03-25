@@ -63,10 +63,13 @@
         \exp(A) \exp(B) = \exp(A + B + \frac{1}{2} \comm{A}{B} + \cdots) \thinspace ,
     \end{equation}
     where higher order nested commutators have been left out. From this, two special consequences can be formulated:
-    \begin{equation}
-        \exp(-A) \thinspace B \thinspace \exp(A) = B + \comm{B}{A} + \frac{1}{2!} \comm{\comm{B}{A}}{A} + \cdots \thinspace ,
-    \end{equation}
-    and
-    \begin{equation}
-        \exp(A) \thinspace B \thinspace \exp(-A) = B + \comm{A}{B} + \frac{1}{2!} \comm{A}{\comm{A}{B}} + \cdots \thinspace .
-    \end{equation}
+    \begin{align}
+        \exp(-A) \thinspace B \thinspace \exp(A) &= B + \comm{B}{A} + \frac{1}{2!} \comm{\comm{B}{A}}{A} + \cdots \\
+        &= \sum_{n=0}^{+ \infty} \frac{1}{n!} \thinspace {}_n\comm{B}{A} \thinspace ,
+    \end{align}
+    in which ${}_n\comm{B}{A}$ is the $n$-fold nested commutator in which the increased nesting is in the left argument, and
+    \begin{align}
+        \exp(A) \thinspace B \thinspace \exp(-A) &= B + \comm{A}{B} + \frac{1}{2!} \comm{A}{\comm{A}{B}} + \cdots \\
+        &= \sum_{n=0}^{+ \infty} \frac{1}{n!} \comm{A}{B}_n \thinspace ,
+    \end{align}
+    in which $\comm{A}{B}_n$ is the $n$-fold nested commutator in which the increased nesting is in the right argument.
