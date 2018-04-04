@@ -75,3 +75,70 @@
                     || \Delta \vb{x}_{i+1} || < \epsilon
                 \end{equation}
         \end{enumerate}
+
+    \subsection{DIIS}
+        DIIS \cite{Pulay1980} (direct inversion of the iterative subspace) is a technique to accelerate convergence in solving linear equations. Let's say we have already found $n$ estimates to the problem $\set{\vb{x}_i}$. We can construct a new estimate $\vb{x}^*$ as a linear combination of the previous ones:
+        \begin{equation} \label{eq:DIIS_linear_combination}
+            \vb{x}^* = \sum_i^n c_i \vb{x}_i \thinspace .
+        \end{equation}
+        Let's say we also have a way to construct an error vector $\vb{e}_i$ for every estimate, such that our goal will be to minimize the error function in a least squares sense:
+        \begin{equation}
+            \norm{\sum_i^n c_i \vb{e}_i}^2 \thinspace ,
+        \end{equation}
+        under the constraint that
+        \begin{equation}
+            \sum_i^n c_i = 1 \thinspace .
+        \end{equation}
+        We can then construct the Lagriangian for this problem as
+        \begin{equation}
+            \mathcal{L}(\set{c_i}, \lambda) = \norm{\sum_i^n c_i \vb{e}_i}^2 - \lambda \qty( \sum_i^n c_i - 1 ) \thinspace ,
+        \end{equation}
+        and by introducing a suitable scalar product between the error vectors
+        \begin{equation}
+            B_{ij} = (\vb{e}_i, \vb{e}_j) \thinspace ,
+        \end{equation}
+        we can write the Lagrangian as
+        \begin{equation}
+            \mathcal{L}(\set{c_i}, \lambda) = \sum_{ij}^n c_i c_j B_{ij} - \lambda \qty(\sum_i^n c_i - 1) \thinspace .
+        \end{equation}
+        Differentiating with respect to $\lambda$ gives us back the original constraint, and differentiating with respect to every coefficient leads to
+        \begin{equation}
+            \pdv{\mathcal{L}}{c_k} = 0 = 2 \sum_i^n c_i B_{ik} - \lambda \thinspace ,
+        \end{equation}
+        as the inner product matrix is symmetric. Absorbing the factor 2 in the Lagrange multiplier, we find the following system of equations
+        \begin{equation}
+            \begin{pmatrix}
+                B_{11}  & B_{12}    & \cdots    & B_{1n}    & -1      \\
+                B_{21}  & B_{22}    & \cdots    & B_{2n}    & -1      \\
+                \vdots  & \vdots    & \ddots    & \vdots    & \vdots  \\
+                B_{n1}  & B_{n2}    & \cdots    & B_{nn}    & -1      \\
+                -1      & -1        & \cdots    &  -1       & 0
+            \end{pmatrix}
+            \begin{pmatrix}
+                c_1     \\
+                c_2     \\
+                \vdots  \\
+                c_n     \\
+                \lambda
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                0       \\
+                0       \\
+                \vdots  \\
+                0       \\
+                -1
+            \end{pmatrix} \thinspace .
+        \end{equation}
+        We can recognize a linear system of equations of the form $\vb{B}' \vb{y} = \vb{b}$, which can be easily solved using various decomposition techniques, leading to the coefficients $\qty{c_i}$ which are then used in constructing the new estimate as in equation (\ref{eq:DIIS_linear_combination}). \\
+
+        What remains is to construct a way to define the error vectors associated to every estimate $\vb{x}_i$, and a standard way would be to define residual vectors as
+        \begin{equation}
+            \vb{e}_i = \vb{x}_i - \vb{x}_{i-1} \thinspace .
+        \end{equation}
+        As an example, after 3 standard iterations, we end up with a set $\qty{\vb{x}_1, \vb{x}_2, \vb{x}_3}$. We can then calculate
+        \begin{align}
+            &\vb{e}_1 = \vb{x}_2 - \vb{x}_1 \\
+            &\vb{e}_2 = \vb{x}_3 - \vb{x}_2 \thinspace ,
+        \end{align}
+        We can then set up the DIIS equations to find the coefficients $c_1$ and $c_2$, in order to construct a new guess vector $\vb{x}_3$, which is in a sense 'overwritten'. This DIIS-improved guess vector is then used as a starting point for the next iteration.
