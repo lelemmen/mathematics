@@ -134,7 +134,7 @@
 
         What remains is to construct a way to define the error vectors associated to every estimate $\vb{x}_i$, and a standard way would be to define residual vectors as
         \begin{equation}
-            \vb{e}_i = \vb{x}_i - \vb{x}_{i-1} \thinspace .
+            \vb{e}_i = \vb{x}_{i+1} - \vb{x}_i \thinspace .
         \end{equation}
         As an example, after 3 standard iterations, we end up with a set $\qty{\vb{x}_1, \vb{x}_2, \vb{x}_3}$. We can then calculate
         \begin{align}
