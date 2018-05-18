@@ -19,15 +19,16 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/l
                         main/calculus.tex
                         main/functions.tex
                         main/linear_maps.tex
+                        main/linear_variation_method.tex
                         main/matrix.tex
                         main/misc.tex
                         main/morphisms.tex
                         main/representation_theory.tex
                         main/symmetric_eigenvalue_problem.tex
                         main/systems_of_equations.tex
-					IMAGE_DIRS
-						images
-					)
+                    IMAGE_DIRS
+                        images
+                    )
 
 
 # POST-BUILD: move the created .pdf-file to the top directory (copy and delete)

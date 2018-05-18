@@ -1,0 +1,66 @@
+\section{The variation method}
+    Suppose we have introduced a basis set of $L$ vectors $\set{\ket{i}}$, which are not necessarily orthonormal:
+    \begin{equation}
+        S_{ij} = \braket{i}{j} \neq \delta_{ij} ,
+    \end{equation}
+    such that we can linearly expand a state vector $\ket{\vb{c}}$ in this $L$-dimensional basis as
+    \begin{equation}
+        \ket{\vb{c}} = \sum_i^L c_i \ket{i} \thinspace .
+    \end{equation}
+
+    The energy of a system characterized by this wave function and the Hamiltonian $\hat{\mathcal{H}}$ is then
+    \begin{equation} \label{eq:variational_energy}
+        E = \frac{\ev{\hat{\mathcal{H}}}{\vb{c}}}{\braket{\vb{c}}} \thinspace ,
+    \end{equation}
+    which is a real\footnote{because of the Hermiticity of the Hamiltonian}-valued function of the complex parameters $\qty{c_i}$ and their complex conjugates $\qty{c_i^*}$. For notational convenience, we will collect both sets in complex-valued vectors $\vb{c}$ and $\vb{c}^*$. We will then rewrite equation (\ref{eq:variational_energy}) as
+    \begin{equation} \label{eq:variational_energy_rewritten}
+        E(\vb{c}, \vb{c}^*) \braket{\vb{c}} = \ev{\hat{\mathcal{H}}}{\vb{c}} \thinspace .
+    \end{equation}
+    and by deriving equation (\ref{eq:variational_energy_rewritten}) with respect to $c_i$ and $c_i^*$, we obtain
+    \begin{equation}
+        \pdv{E(\vb{c}, \vb{c}^*)}{c_i} \braket{\vb{c}} + E(\vb{c}, \vb{c}^*) \sum_j^L c_j^* S_{ji} = \sum_j^L c_j^* H_{ji}
+    \end{equation}
+    and
+    \begin{equation}
+        \pdv{E(\vb{c}, \vb{c}^*)}{c_i^*} \braket{\vb{c}} + E(\vb{c}, \vb{c}^*) \sum_j^L c_j S_{ij} = \sum_j^L c_j H_{ij} \thinspace ,
+    \end{equation}
+    in which we have introduced the Hamiltonian matrix:
+    \begin{equation}
+        H_{ij} = \matrixel{i}{\hat{\mathcal{H}}}{j} \thinspace .
+    \end{equation}
+
+    In obtaining these two equations, we have used the properties ($\forall z, z \in \C$)
+    \begin{align}
+        &\pdv{z}{z} = 1     &\pdv{z}{z^*} = 0 \\
+        &\pdv{z^*}{z} = 0   &\pdv{z^*}{z^*} = 1 \thinspace ,
+    \end{align}
+    which lead to
+    \begin{equation}
+        \pdv{c_j}{c_i} = \delta_{ij}
+    \end{equation}
+    and
+    \begin{equation}
+        \pdv{c_j^*}{c_i} = 0 \thinspace .
+    \end{equation}
+
+    At a minimum of the energy $E(\vb{c}, \vb{c}^*)$, its partial derivatives with respect to $c_i$ and $c_i^*$ must vanish, leading to
+    \begin{equation}
+        \sum_j^L \qty(H_{ji} - E S_{ji}) c_j^* = 0
+    \end{equation}
+    and
+    \begin{equation}
+        \sum_j^L \qty(H_{ij} - E S_{ij}) c_j = 0 \thinspace ,
+    \end{equation}
+    which are two equations that are each other's complex conjugate. This means that these equations are not independent, and therefore coincide. We will keep the last equation, which is equivalent with the generalized eigenvalue problem
+    \begin{equation}
+        \vb{H} \vb{c} = E \vb{S} \vb{c} \thinspace .
+    \end{equation}
+
+    In the special case that the initially introduced $L$-dimensional basis set $\qty{\ket{i}}$ is orthonormal, we have
+    \begin{equation}
+        S_{ij} = \braket{i}{j} = \delta_{ij} ,
+    \end{equation}
+    such that we can recognize the regular eigenvalue problem
+    \begin{equation}
+        \vb{H} \vb{c} = E \vb{c} \thinspace .
+    \end{equation}
