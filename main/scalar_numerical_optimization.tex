@@ -22,8 +22,10 @@
 
             \item \label{enum:scalar_Newton:gradient_Hessian} Calculate the gradient $\grad{f(\vb{x}_{k+1})}$ and the Hessian $\vb{H}(\vb{x}_{k+1})$ at the new point $\vb{x}_{k+1}$.
 
-            \item Repeat steps (\ref{enum:scalar_Newton:solve_Newton_step}) to (\ref{enum:scalar_Newton:gradient_Hessian}) until convergence on the norm of $\vb{p}_k$ is achieved, given a tolerance $\epsilon$:
+            \item Repeat steps \ref{enum:scalar_Newton:solve_Newton_step} to \ref{enum:scalar_Newton:gradient_Hessian} until convergence on the norm of $\vb{p}_k$ is achieved, given a tolerance $\epsilon$:
                 \begin{equation}
                     \norm{\vb{p}_k} < \epsilon \thinspace .
                 \end{equation}
         \end{enumerate}
+
+        It is interesting to note that this method is exactly equal to the one described in section \ref{sec:systems_of_equations:newton} if we make the parallel that the vector field $\vb{f}$ in that section is the gradient of the scalar function $f$ in this section.
