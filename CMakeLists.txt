@@ -24,6 +24,7 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/l
                         main/misc.tex
                         main/morphisms.tex
                         main/representation_theory.tex
+                        main/scalar_numerical_optimization.tex
                         main/symmetric_eigenvalue_problem.tex
                         main/systems_of_equations.tex
                     IMAGE_DIRS

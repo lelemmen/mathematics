@@ -1,0 +1,29 @@
+\section{Numerical optimization of scalar functions}
+    In this section, we will look for numerical solutions to the minimization of the function
+    \begin{equation}
+        f : \R^n \to \R : \vb{x} \mapsto f(\vb{x}) \thinspace .
+    \end{equation}
+
+    \subsection{Newton's method}
+        Given a current guess $\vb{x}_k$, we can calculate the derivative with respect to $\vb{p}_k$ of equation (\ref{eq:second_order_Taylor}) and setting it to zero (the zero vector). This leads to an equation for the so-called Newton step:
+        \begin{equation} \label{eq:Newton_step_scalar}
+            \vb{H}(\vb{x}_k) \vb{p}^\text{N}_k = - \grad{f(\vb{x}_k)} \thinspace ,
+        \end{equation}
+        in which $\vb{H}(\vb{x}_k)$ is the Hessian at the current point $\vb{x}_k$ and $\grad{f(\vb{x}_k)}$ is the gradient at the current point $\vb{x}_k$. Using this Newton step, we can formulate an algorithm to minimize a scalar function:
+        \begin{enumerate}
+            \item Choose an initial guess $\vb{x}_0$.
+
+            \item \label{enum:scalar_Newton:solve_Newton_step} In iteration number $k+1$, calculate the Newton step by solving equation (\ref{eq:Newton_step_scalar}).
+
+            \item Update the current guess:
+                \begin{equation}
+                    \vb{x}_{k+1} = \vb{x}_k + \vb{p}_k
+                \end{equation}
+
+            \item \label{enum:scalar_Newton:gradient_Hessian} Calculate the gradient $\grad{f(\vb{x}_{k+1})}$ and the Hessian $\vb{H}(\vb{x}_{k+1})$ at the new point $\vb{x}_{k+1}$.
+
+            \item Repeat steps (\ref{enum:scalar_Newton:solve_Newton_step}) to (\ref{enum:scalar_Newton:gradient_Hessian}) until convergence on the norm of $\vb{p}_k$ is achieved, given a tolerance $\epsilon$:
+                \begin{equation}
+                    \norm{\vb{p}_k} < \epsilon \thinspace .
+                \end{equation}
+        \end{enumerate}

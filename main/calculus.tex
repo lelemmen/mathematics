@@ -137,11 +137,15 @@
         Using the previously defined gradient and Hessian, we can write the Taylor expansion of the function $f$ around the point $\vb{x}_0$ as
         \begin{align}
             f(\vb{x}) &= f(\vb{x}_0) + (\vb{x} - \vb{x}_0) \cdot \grad{f(\vb{x}_0)} + \frac{1}{2!} (\vb{x} - \vb{x}_0) \cdot  (\vb{H}(\vb{x}) \thinspace (\vb{x} - \vb{x}_0)) + \cdots \label{eq:taylor_matrix} \\
-            &= f(\vb{x}_0) + \Delta \vb{x} \cdot \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x}^\text{T} \cdot (\vb{H}(\vb{x}_0) \thinspace \Delta \vb{x}) + \cdots \thinspace ,
+            &= f(\vb{x}_0) + \Delta \vb{x} \cdot \grad{f(\vb{x}_0)} + \frac{1}{2!} \Delta \vb{x} \cdot (\vb{H}(\vb{x}_0) \thinspace \Delta \vb{x}) + \cdots \thinspace ,
         \end{align}
         in which
         \begin{equation}
             \Delta \vb{x} = \vb{x} - \vb{x}_0 \thinspace .
+        \end{equation}
+        Equivalently, we can write (up to second order)
+        \begin{equation} \label{eq:second_order_Taylor}
+            f(\vb{x} + \vb{p}) \approx f(\vb{x}) + \grad{f(\vb{x})} \cdot \vb{p} + \tfrac{1}{2} \vb{p} \cdot \qty(\vb{H}(\vb{x}) \vb{p}) \thinspace .
         \end{equation}
 
         Equation (\ref{eq:taylor_matrix}) is actually just short-hand notation for the following:
