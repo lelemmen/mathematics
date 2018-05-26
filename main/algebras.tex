@@ -40,7 +40,17 @@
             \forall T_a, T_b \in \glie: \comm{T_b}{T_a} = - \comm{T_a}{T_b} \thinspace .
         \end{equation}
 
-        In the physics community, the elements $T_a, T_b, \cdots$ are called the generators of the algebra if they are a basis for the underlying vector field. \\
+        It is interesting to see that by defining the adjoint mapping
+        \begin{equation}
+            \ad_{T_a}: \glie \to \glie: T_b \mapsto \ad_{T_a} T_b = \comm{T_a}{T_b} \thinspace ,
+        \end{equation}
+        the Jacobi identity can be written as
+        \begin{equation}
+            \ad_{T_a} \comm{T_b}{T_c} = \comm{\ad_{T_a} T_b}{T_c} + \comm{T_b}{\ad_{T_a} T_c} \thinspace ,
+        \end{equation}
+        which reminds us of how derivatives work. \\
+
+        In the physics community, the elements $T_a, T_b, \cdots$ are called the generators of the algebra if they are a basis for the underlying vector space. \\
 
         For the structure constants, the Jacobi identity implies
         \begin{equation}
