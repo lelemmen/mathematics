@@ -32,8 +32,9 @@ add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/l
                     )
 
 
-# POST-BUILD: move the created .pdf-file to the top directory (copy and delete)
+# POST-BUILD: move the created .pdf-file to the pdf directory (copy and delete)
 add_custom_command(TARGET "${TEX_NAME}_pdf" POST_BUILD
-COMMAND ${CMAKE_COMMAND} -E copy "${TEX_NAME}.pdf" ..
-COMMAND ${CMAKE_COMMAND} -E remove "${TEX_NAME}.pdf"
-COMMENT "Moving PDF-file to top directory.")
+    COMMAND ${CMAKE_COMMAND} -E copy "${TEX_NAME}.pdf" ${CMAKE_SOURCE_DIR}/pdf/"${TEX_NAME}.pdf"
+    COMMAND ${CMAKE_COMMAND} -E remove "${TEX_NAME}.pdf"
+    COMMENT "Moving PDF-file to pdf directory."
+)
