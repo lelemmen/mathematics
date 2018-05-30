@@ -5,14 +5,14 @@ set(TEX_NAME mathematics)
 
 # Define a LaTeX project, and specify where to find the UseLATEX commands
 project(mathematics NONE)  # the NONE option has to be included, since we are not using the langue c, cxx, or Fortran
-include(cmake/UseLATEX.cmake)  # I like anti-cluttering by moving the UseLATEX.cmake file into a separate directory
+include(UseLATEX/UseLATEX.cmake)
 
 
 # BUILD: Add a file to the specified project
-add_latex_document(${TEX_NAME}.tex BIBFILES ../../../../../Archief/Bibliotheek/library.bib
+add_latex_document(${TEX_NAME}.tex BIBFILES bibfile/library.bib
                    INPUTS
-                        config/commands.tex
-                        config/packages.tex
+                        GQCGTeX/gqcg_report.cls
+
                         main/algebraic_structures.tex
                         main/algebras.tex
                         main/commutators.tex

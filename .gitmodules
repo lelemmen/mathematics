@@ -1,0 +1,10 @@
+[submodule "bibfile"]
+	path = bibfile
+	url = git@github.ugent.be:lelemmen/bibfile.git
+[submodule "GQCGTeX"]
+	path = GQCGTeX
+	url = git@github.ugent.be:GQCG/GQCGTeX.git
+	branch = feature/report
+[submodule "UseLATEX"]
+	path = UseLATEX
+	url = https://gitlab.kitware.com/kmorel/UseLATEX
