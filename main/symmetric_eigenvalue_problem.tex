@@ -197,3 +197,60 @@
                 \end{equation}
                 in which $\vb{V}_k$ is the current subspace, $(j)$ is $1$ or $2$ and $\vb{s}^{(j)}$ is either the lowest or second lowest eigenvector of the subspace matrix $\vb{M}$.
         \end{itemize}
+
+    \subsection{The Davidson-Liu diagonalization method}
+        As a generalization of the Davidson method, B. Liu \cite{Liu1978a} proposed the following method. Suppose we are looking for $r$ smallest roots of interest of the symmetric eigenvalue problem.
+        \begin{enumerate}
+            \item Start with a set of $l$ orthonormalized guess vectors
+            \begin{equation}
+                \vb{V} = \begin{pmatrix} \vb{v}_1 & \vb{v}_2 & \cdots & \vb{v}_l \end{pmatrix} \thinspace ,
+            \end{equation}
+            spanning an $l$-dimensional subspace $C(\vb{V})$. As the matrix $\vb{A}$ is diagonally dominant, good initial guesses are the corresponding vectors of the standard basis.
+
+            \item Construct the subspace matrix
+            \begin{equation}
+                S_{ij} = \vb{v}_i^\text{T} \vb{A} \vb{v}_j \qquad \qquad \vb{S} = \vb{V}^\text{T} \vb{A} \vb{V} \thinspace ,
+            \end{equation}
+            which is an $l \times l$-matrix.
+
+            \item Diagonalize that subspace matrix, finding the $r$ smallest roots of interest:
+            \begin{equation}
+                \vb{S} \vb{z}^k = \lambda^k \vb{z}^k \qquad \qquad k=1,\dots,r \leq l
+            \end{equation}
+            Collecting the eigenvectors of the subspace matrix $\vb{S}$ as columns in a matrix $\vb{Z}$, and the corresponding eigenvalues as the diagonal elements of a matrix $\boldsymbol{\Lambda}$, we can equivalently write
+            \begin{equation}
+                \vb{S} \vb{Z} = \boldsymbol{\Lambda} \vb{Z} \thinspace ,
+            \end{equation}
+            with $\vb{Z}$ being an $l \times r$ matrix.
+
+            \item From the eigenvectors $\vb{z}^k$, we can construct current estimates to the symmetric eigenvalue problem:
+            \begin{equation}
+                \vb{x}^k = \sum_{i=1}^l z_i^k \vb{v}_i \qquad \qquad \vb{X} = \vb{V} \vb{Z} \thinspace ,
+            \end{equation}
+            where $\vb{X}$'s columns are populated by the $r$ current estimates.
+
+            \item Calculate the residual vectors
+            \begin{equation}
+                \vb{r}^k = (\vb{A} - \lambda^k \vb{I}_{(n)}) \vb{x}^k
+            \end{equation}
+            and the correction vectors
+            \begin{equation}
+                \delta^k_i = (\lambda^k - A_{ii})^{-1} r_i^k \thinspace .
+            \end{equation}
+            and normalize the correction vectors
+            \begin{equation}
+                \boldsymbol{\delta}^k := \frac{\boldsymbol{\delta}^k}{||\boldsymbol{\delta}^k||}
+            \end{equation}
+
+            \item Expand the subspace $C(\vb{V})$ with the orthonormalized correction vectors. First, project $\boldsymbol{\delta}^k$ on the orthogonal complement of $C(\vb{V})$:
+            \begin{equation}
+                \vb{q} = (\vb{I}_{(n)} - \vb{V} \vb{V}^\text{T}) \boldsymbol{\delta}^k \thinspace ,
+            \end{equation}
+            then calculate the norm $|| \vb{q} ||$ and if it is larger than a certain threshold (say $10^{-3}$), extend the current subspace $C(\vb{V})$ with the orthonormalized correction vector:
+            \begin{align}
+                & \vb{v}' = \frac{\vb{q}}{|| \vb{q} ||} \\
+                & \vb{V} := \qty(\begin{array}{c|c} \vb{V} & \vb{v}' \end{array}) \thinspace .
+            \end{align}
+
+            \item Convergence is achieved when the norm of every residual vector is smaller than a predetermined tolerance.
+        \end{enumerate}
