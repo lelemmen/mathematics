@@ -1,11 +1,18 @@
 \section{Miscellaneous}
     Splitting up sums with respect to one of the allowed index numbers is not that hard to do. Let's start by a single sum:
     \begin{equation}
-        \sum_i^N C_i = \sum_{i \neq a} C_i + C_a \thinspace ,
+        \sum_i^N C_i = \sum_{i \neq a}^N C_i + C_a \thinspace ,
     \end{equation}
     and double sums are just a little more involved:
     \begin{equation}
-        \sum_{ij}^N C_{ij} = C_{aa}+ \sum_{i \neq a}^N (C_{ia} + C_{ai}) + \sum_{\subalign{i \neq a \\ j \neq a}} C_{ij} \thinspace .
+        \sum_{ij}^N C_{ij} = C_{aa}+ \sum_{i \neq a}^N (C_{ia} + C_{ai}) + \sum_{\subalign{i \neq a \\ j \neq a}}^N C_{ij} \thinspace .
+    \end{equation}
+    For a quadruple sum, we have
+    \begin{equation}
+        \begin{split}
+            \sum_{ijkl}^N C_{ijkl} = &C_{aaaa} + \sum_{i \neq a}^N (C_{iaaa} + C_{aiaa} + C_{aaia} + C_{aaai}) + \sum_{\subalign{i \neq a \\ j \neq a}}^N (C_{ijaa} + C_{iaja} + C_{iaaj} + C_{aija} + C_{aiaj} + C_{aaij}) \\
+            &+ \sum_{\subalign{i \neq a \\ j \neq a \\ k \neq a}}^N (C_{ijka} + C_{ijak} + C_{iajk} + C_{aijk}) + \sum_{\subalign{i \neq a \\ j \neq a \\ k \neq a \\ l \neq a}}^N C_{ijkl} \thinspace .
+        \end{split}
     \end{equation}
 
     Borchardt's theorem states that for a Cauchy matrix $\vb{C}$:
